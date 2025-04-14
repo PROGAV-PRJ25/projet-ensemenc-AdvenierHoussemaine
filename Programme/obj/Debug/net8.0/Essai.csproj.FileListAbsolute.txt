@@ -1,0 +1,15 @@
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\obj\Debug\net8.0\Essai.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\obj\Debug\net8.0\Essai.AssemblyInfoInputs.cache
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\obj\Debug\net8.0\Essai.AssemblyInfo.cs
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\obj\Debug\net8.0\Essai.csproj.CoreCompileInputs.cache
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\obj\Debug\net8.0\Essai.sourcelink.json
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\bin\Debug\net8.0\Essai.exe
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\bin\Debug\net8.0\Essai.deps.json
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\bin\Debug\net8.0\Essai.runtimeconfig.json
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\bin\Debug\net8.0\Essai.dll
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\bin\Debug\net8.0\Essai.pdb
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\obj\Debug\net8.0\Essai.dll
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\obj\Debug\net8.0\refint\Essai.dll
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\obj\Debug\net8.0\Essai.pdb
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\obj\Debug\net8.0\Essai.genruntimeconfig.cache
+C:\Users\flore\OneDrive\Documents\GitHub\projet-ensemenc-f1orissons\Programme\obj\Debug\net8.0\ref\Essai.dll

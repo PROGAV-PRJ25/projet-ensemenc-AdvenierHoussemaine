@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\flore\\OneDrive\\Documents\\GitHub\\projet-ensemenc-f1orissons\\Essai\\Essai.csproj": {}
+    "C:\\Users\\flore\\OneDrive\\Documents\\GitHub\\projet-ensemenc-f1orissons\\Programme\\Essai.csproj": {}
   },
   "projects": {
-    "C:\\Users\\flore\\OneDrive\\Documents\\GitHub\\projet-ensemenc-f1orissons\\Essai\\Essai.csproj": {
+    "C:\\Users\\flore\\OneDrive\\Documents\\GitHub\\projet-ensemenc-f1orissons\\Programme\\Essai.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\flore\\OneDrive\\Documents\\GitHub\\projet-ensemenc-f1orissons\\Essai\\Essai.csproj",
+        "projectUniqueName": "C:\\Users\\flore\\OneDrive\\Documents\\GitHub\\projet-ensemenc-f1orissons\\Programme\\Essai.csproj",
         "projectName": "Essai",
-        "projectPath": "C:\\Users\\flore\\OneDrive\\Documents\\GitHub\\projet-ensemenc-f1orissons\\Essai\\Essai.csproj",
+        "projectPath": "C:\\Users\\flore\\OneDrive\\Documents\\GitHub\\projet-ensemenc-f1orissons\\Programme\\Essai.csproj",
         "packagesPath": "C:\\Users\\flore\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\flore\\OneDrive\\Documents\\GitHub\\projet-ensemenc-f1orissons\\Essai\\obj\\",
+        "outputPath": "C:\\Users\\flore\\OneDrive\\Documents\\GitHub\\projet-ensemenc-f1orissons\\Programme\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\flore\\AppData\\Roaming\\NuGet\\NuGet.Config"
