@@ -1,8 +1,8 @@
-class petitTerrain : Terrain
+class PetitTerrain : Terrain
 {
     List<char> Emplacements {get; set;} 
 
-    public PetitTerrain(int humidite, int numTerrain, List<char> emplacements, string type) : base(HumiditeTerrain, numTerrain, TypeTerrain)
+    public PetitTerrain(int numTerrain, string type, List<char> emplacements) : base(numTerrain, TypeTerrain)
     {
         Emplacements = emplacements;
     }

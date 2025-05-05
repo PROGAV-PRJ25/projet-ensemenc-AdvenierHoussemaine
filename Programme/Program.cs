@@ -1,4 +1,7 @@
-﻿/*
+﻿Terrain terrain1 = new Terrain(1, "argileux");
+Console.WriteLine(terrain1);
+
+/*
 new class Affichage ()
 {
     List <List<string>> Grille {get; set;}
@@ -26,3 +29,4 @@ new class Affichage ()
     }
 }
 */
+
