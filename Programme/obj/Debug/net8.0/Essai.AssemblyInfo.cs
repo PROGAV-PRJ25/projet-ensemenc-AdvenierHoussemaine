@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Essai")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed59b6e151e6030f91d65657bd59fa6307571fe9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3bc689316b162646787f69268375e0c5f896f53")]
 [assembly: System.Reflection.AssemblyProductAttribute("Essai")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Essai")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
