@@ -1,4 +1,4 @@
-﻿Terrain terrain1 = new Terrain(1, "argileux");
+﻿Terrain terrain1 = new Terrain("1", "argileux");
 Console.WriteLine(terrain1);
 
 /*
