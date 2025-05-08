@@ -1,9 +1,12 @@
-class Parcelle
+/*Les parcelles sont des "sous-sterrains" dans les terrains. Il ets possible de planter qu'un seul type de plante dans une parcelle.
+  Donc, sur un terrain il peut y avoir au maximum 6 types de plantes.
+  Le joueur ne peux exécuter une action sur une parcelle. Il doit faire son action sur tout le terrain.*/
+public class Parcelle
 {
-    public List<char> Emplacements {get; set;} 
+    public List<string> Emplacements {get; set;} //Les emplacements sont les "unités d'espace" dans une parcelle. IL y en a 6 dans chaque parcelle.
     public string NumParcelle {get; set;}
 
-    public Parcelle(string numPetitTerrain, List<char> emplacements)
+    public Parcelle(string numPetitTerrain, List<string> emplacements)
     {
         Emplacements = emplacements;
         NumParcelle = numPetitTerrain;

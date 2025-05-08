@@ -1,5 +1,9 @@
-﻿Terrain terrain1 = new Terrain("1", "argileux");
+﻿/*
+Terrain terrain1 = new Terrain("1", "argileux");
 Console.WriteLine(terrain1);
+terrain1.Arroser();
+Console.WriteLine(terrain1);
+*/
 
 /*
 new class Affichage ()
