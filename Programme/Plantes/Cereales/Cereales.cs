@@ -28,4 +28,3 @@ public abstract class Cereales : Plante
         int NombreDeMoisDesperanceMax = nombreDeMoisDesperanceMax; 
 
 */
-string nomPlante,bool natureAnnuelle,bool natureComestible,int nombreDeProduitQueLaPlantePeuxProduire, Saison saisonSemi, Terrain terrainPrefere, double besoinEnEau, double besoinEnLuminosité,double temperaturePrefereMin,double temperaturePrefereMax ,double surfaceNecessaire,double vitesseCroissance,List<Maladies> maladiesContractable,int nombreDeMoisDesperanceMax
