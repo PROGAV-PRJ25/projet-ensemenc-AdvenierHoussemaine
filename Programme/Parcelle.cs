@@ -1,4 +1,4 @@
-/*Les parcelles sont des "sous-sterrains" dans les terrains. Il ets possible de planter qu'un seul type de plante dans une parcelle.
+/*Les parcelles sont des "sous-sterrains" dans les terrains. Il est possible de planter qu'un seul type de plante dans une parcelle.
   Donc, sur un terrain il peut y avoir au maximum 6 types de plantes.
   Le joueur ne peux exécuter une action sur une parcelle. Il doit faire son action sur tout le terrain.*/
 public class Parcelle

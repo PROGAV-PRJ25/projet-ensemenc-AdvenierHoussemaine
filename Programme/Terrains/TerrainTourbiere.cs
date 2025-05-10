@@ -1,6 +1,6 @@
 public class TerrainTourbiere : Terrain
 {
-    public TerrainTourbiere(string numTerrain, string typeTerrain) : base (numTerrain, typeTerrain)
+    public TerrainTourbiere(string numTerrain) : base (numTerrain)
     {
         TypeTerrain = "Tourbière";
     }

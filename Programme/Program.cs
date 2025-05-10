@@ -1,9 +1,8 @@
-﻿/*
-Terrain terrain1 = new Terrain("1", "argileux");
+﻿TerrainTourbiere terrain1 = new TerrainTourbiere("1");
 Console.WriteLine(terrain1);
 terrain1.Arroser();
 Console.WriteLine(terrain1);
-*/
+
 
 /*
 new class Affichage ()

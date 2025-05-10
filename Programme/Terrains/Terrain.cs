@@ -2,10 +2,11 @@ public abstract class Terrain
 {
     public string NumTerrain {get;set;} //Pour pouvoir identifier les terrains
     public double HumiditeTerrain {get; set;} //Allant de 0(très sec) à 1(très humide)
+    public double EnsoleillementTerrain{get; set;} //Allant de 0(ombragé) à 1(plein Soleil)
     public List<Parcelle> SousTerrains {get; set;} //Dans chaque terrain, il y a 6 emplacements pour pkanter des fleurs. Dans chacune des ces parcelles, il y a 6 "unités d'espace".
-    public string TypeTerrain {get; set;} //Determine si le terrain est argileux, cailloux, tourbière ou mare.
+    public string TypeTerrain {get; set;} = string.Empty; //Determine si le terrain est argileux, cailloux, tourbière ou mare.
 
-    public Terrain(string numTerrain, string typeTerrain)
+    public Terrain(string numTerrain)
     {
         //Lorsque l'on initalise un terrain, il est vide 'o'.
         List<string> charInitiaux = new List<string> {"🟤", "🟤","🟤", "🟤", "🟤", "🟤"};
@@ -15,12 +16,12 @@ public abstract class Terrain
             Parcelle parcelle = new Parcelle($"{numTerrain}.{i+1}", charInitiaux);
             SousTerrains.Add(parcelle);
         }
-        HumiditeTerrain = 0.5; //A l'initalisation, l'humidité est par défaut à 0.5. ---- dépendra du type de terrain
+        EnsoleillementTerrain = 0.5; //A l'initalisation, l'ensoleillement est par défaut à 0.5.
         NumTerrain = numTerrain;
-        if (typeTerrain == "Tourbière") HumiditeTerrain = 1;
-        else if (typeTerrain == "Argileux") HumiditeTerrain = 0.4;
-        else if (typeTerrain == "Sableux") HumiditeTerrain = 0.7;
-        else if (typeTerrain == "Rocheux") HumiditeTerrain = 0.2;
+        if (TypeTerrain == "Tourbière") HumiditeTerrain = 1;
+        else if (TypeTerrain == "Argileux") HumiditeTerrain = 0.4;
+        else if (TypeTerrain == "Sableux") HumiditeTerrain = 0.7;
+        else if (TypeTerrain == "Rocheux") HumiditeTerrain = 0.2;
     }
 
     public void Arroser() //Ajouter la modification du taux d'eau des plantes
