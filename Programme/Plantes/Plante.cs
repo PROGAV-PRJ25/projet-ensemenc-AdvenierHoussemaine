@@ -1,54 +1,43 @@
 /*
-
-
 public abstract class Plante {
 
-    //Caractéritiques de la plante
+    //CARACTERISTIQUES DE LA PLANTE
     public string NomPlante {get; protected set;}
-    public string ImagePlante {get; set;}
-
-    //public bool NatureAnnuelle {get; protected set;} - est-ce que ça va nous servir?
+    public List<string> ImagesPlante {get; set;} 
     public bool NatureCommercialisable {get; protected set;}
     public int NombreProduits {get; protected set;}
-    // Diff avec surface nécéssaire ? - public double SurfaceOccupee {get; protected set;}
     
-    // preferences de la plante
+    //PREFERENCES DE LA PLANTE
     public Saison SaisonSemi {get; protected set;}
-    //public Terrain TerrainPrefere {get; protected set;} pas nécessaire à mon sens, les préférencs en eau et luière suffisent
-
-    public double BesoinHumidite {get; protected set;}
-    public double BesoinLuminosite {get; protected set;}
-    //public double TemperaturePrefereMin {get; protected set;} //Est ce que c'est vrmt utilse? Parce qu'on peut pas infulencer la température...
-    //public double TemperaturePrefereMax {get; protected set;} //Pareil
+    public double BesoinHumidite {get; set;} //Compris entre 0 et 1.
+    public double BesoinLuminosite {get; protected set;} //Compris entre 0 et 1.
+    public double TemperaturePrefereMin {get; protected set;}
+    public double TemperaturePrefereMax {get; protected set;}
     public int SurfaceNecessaire {get; protected set;} //Détermine le nombre d'emplacement dans une parcelle qu'il lui faut pour grandir.
 
-    // donnees initiales qui changerons au fil du temps
-    public double VitesseCroissance {get; set;} //ce qui symbolise l'état de la plante, compris entre -1 et 1. -1=mort 0=pas de changement, 1=double la taille lors d'un tour de jeu
-    public Parcelle ParcellePlante {get; protected set;} //-- pas nécessaire je pense, les plantes seront ajoutés aux terrains et ces listes seront utilisées pour jouer
+    //DONNEES INITIALES QUI CHANGENT AU COURS DE LA PARTIE
+    public double VitesseCroissance {get; set;} //Symbolise l'état de la plante, compris entre -1 et 1 :  -1 = mort, 0 = pas de changement, entre 0.5 et 1 = double la taille lors d'un tour de jeu.
+    public Terrain TerrainPlante {get; protected set;} //Indique ou se situe la plante.
 
-    // Valeurs durant le jeu
-    public double HumiditePlante {get; set;}
-    public double LuminositePlante {get; set;}
-
-    //Contraintes
+    //CONTRAINTES
     public List<Maladies> MaladiesContractables {get; protected set;}
     public int DureeDeMaturation {get; set;}
 
     public Plante()
     {
-        VitesseCroissance = 0; //Initalisée à "pas de croissance" pour toutes les plantes ????pas sur du choix...
+        VitesseCroissance = 0; //Initalisée à "pas de croissance" pour toutes les plantes.
     }
 
     public void Planter(Terrain terrainOuLaPlanteEst){
-        TerrainOuLaPlanteEst = terrainOuLaPlanteEst;
+        TerrainPlante = terrainOuLaPlanteEst;
     }
     public double VerificationEtatPlante(){ //si retourne 0 la plante survie et grandie pas si elle retourne 1 elle est a sa croissance maximale si elle retourne -1 elle meurt et les nombre négatif signifie une décroissance
-        // verification si elle est en etat de survivire
-        if (BesoinEnEau<TerrainOuLaPlanteEst.HumiditeTerrain || BesoinEnLuminosité<TerrainOuLaPlanteEst.)
+        //Verification si elle est en etat de survivre
+        if (BesoinHumidite > TerrainPlante.HumiditeTerrain || BesoinLuminosite > Meteo.Ensoleillement)
         {
             return-1; //la plante meurt
         }
-        // si on est pas dans ces températures préfére elle ne grandira pas
+        //Si on est pas dans ces températures préfére elle ne grandira pas
         if (Meteo.temperature<TemperaturePrefereMin)
         {
             VitesseCroissance= -(TemperaturePrefereMin-Meteo.temperature)/TemperaturePrefereMin; // on obtient -1 si on atteint zero degrés
@@ -70,7 +59,7 @@ public abstract class Plante {
     }
      //si il n'y a pas beaucoup de place la croissance est limité
      public double Croissance(double croissancePotentielle){// a effectuer seulement si la vitesseDeCroissance est positive
-        if (SurfaceOccupé*(croissancePotentielle-1)<TerrainOuLaPlanteEst.surfaceDisponible)
+    if (SurfaceNecessaire*(croissancePotentielle-1)<TerrainPlante.surfaceDisponible) //A régler....:/
         {
             return croissancePotentielle;
         }
@@ -80,5 +69,4 @@ public abstract class Plante {
         }
      }
 }
-
 */

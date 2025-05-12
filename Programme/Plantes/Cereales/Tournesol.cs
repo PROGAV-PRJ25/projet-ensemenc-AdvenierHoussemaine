@@ -17,14 +17,11 @@ public class Tournesol : Cereales
         DureeDeMaturation = 4;
         //MaladiesContractables = (....)
         
-        //On initalise les valeurs du jeu aux besoins de la plante
-        HumiditePlante = 0.4;
-        LuminositePlante = 0.8;
  
         /*
         ---PAS SUR DE L'UTILITE---
-        TemperaturePrefereMin = 10;
-        TemperaturePrefereMax = 20; 
+        TemperaturePrefereeMin = 10;
+        TemperaturePrefereeMax = 20; 
         
     }
 }
