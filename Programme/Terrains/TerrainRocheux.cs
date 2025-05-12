@@ -4,4 +4,8 @@ public class TerrainRocheux : Terrain
     {
         TypeTerrain = "Rocheux";
     }
+    public void ProtegerAvecLezards()
+    {
+        //Mettre des poissons qui enlèvent les parasites des plantes
+    }
 }

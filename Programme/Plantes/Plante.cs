@@ -10,7 +10,7 @@ public abstract class Plante {
     //PREFERENCES DE LA PLANTE
     public Saison SaisonSemi {get; protected set;}
     public double BesoinHumidite {get; set;} //Compris entre 0 et 1.
-    public double BesoinLuminosite {get; protected set;} //Compris entre 0 et 1.
+    public double BesoinLuminosite {get; set;} //Compris entre 0 et 1.
     public double TemperaturePrefereeMin {get; protected set;}
     public double TemperaturePrefereeMax {get; protected set;}
     public int SurfaceNecessaire {get; protected set;} //Détermine le nombre d'emplacement dans une parcelle qu'il lui faut pour grandir.
@@ -21,7 +21,7 @@ public abstract class Plante {
     public Parcelle ParcellePlante {get; set;} //Indique sur quelle parcelle du terrain se situe la plante.
 
     //CONTRAINTES
-    public List<Maladies> MaladiesContractables {get; protected set;}
+    // vient on le fait que is on a le temps - public List<Maladies> MaladiesContractables {get; protected set;}
     public int DureeDeMaturation {get; set;} //En mois.
 
     public Plante()
@@ -34,7 +34,7 @@ public abstract class Plante {
     }
     public double VerificationEtatPlante(){ //si retourne 0 la plante survie et grandie pas si elle retourne 1 elle est a sa croissance maximale si elle retourne -1 elle meurt et les nombre négatif signifie une décroissance
         //Verification si elle est en etat de survivre
-        if (BesoinHumidite > TerrainPlante.HumiditeTerrain || BesoinLuminosite > Meteo.Ensoleillement)
+        if (BesoinHumidite > TerrainPlante.HumiditeTerrain || BesoinLuminosite > TerrainPlante.EnsoleillementTerrain) //Comparre à l'ensoeillement du terrain et pas la mété
         {
             return-1; //la plante meurt
         }
@@ -56,7 +56,7 @@ public abstract class Plante {
            
         }
         //ce seront les maladies qui affectent la plante
-         return VitesseCroissance;
+        return VitesseCroissance;
     }
      //si il n'y a pas beaucoup de place la croissance est limité
      public double Croissance(double croissancePotentielle){// a effectuer seulement si la vitesseDeCroissance est positive

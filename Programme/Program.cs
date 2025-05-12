@@ -1,6 +1,6 @@
 ﻿TerrainTourbiere terrain1 = new TerrainTourbiere("1");
 Console.WriteLine(terrain1);
-terrain1.Arroser();
+terrain1.Ombrager();
 Console.WriteLine(terrain1);
 
 
