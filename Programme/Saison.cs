@@ -1,25 +1,50 @@
 public class Saison {
     public string NomSaison {get; set;}
     public List<Mois> MoisDeLaSaison {get; set;}
+   /* public Mois Mois1;
+    public Mois Mois2;
+    public Mois Mois3;*/
 
     public Saison(string nomSaison)
     {
         NomSaison=nomSaison;
         if (nomSaison=="Été")
         {
-            MoisDeLaSaison = new List<Mois> {"Juin", "Juillet","Août"};
+            MoisDeLaSaison = new List<Mois>
+            {
+                new ("Juin"),
+                new ("Juillet"),
+                new ("Août")
+            };
+
         }
         if (nomSaison=="Automne")
         {
-            MoisDeLaSaison = new List<Mois> {"Septembre", "Octobre","Novembre"};
+            MoisDeLaSaison = new List<Mois>
+            {
+                new("Septembre"),
+                new("Octobre"),
+                new("Novembre")
+            };
+
         }
         if (nomSaison=="Hiver")
         {
-            MoisDeLaSaison = new List<Mois> {"Décembre", "Janvier","Février"};
+            MoisDeLaSaison = new List<Mois>
+            {
+                new("Décembre"),
+                new("Janvier"),
+                new("Février")
+            };
         }
         else
         {
-            MoisDeLaSaison = new List<Mois> {"Mars", "Avril","Mai"};
+            MoisDeLaSaison = new List<Mois>
+            {
+                new("Mars"),
+                new("Avril"),
+                new("Mai")
+            };
         }
     }
 }
