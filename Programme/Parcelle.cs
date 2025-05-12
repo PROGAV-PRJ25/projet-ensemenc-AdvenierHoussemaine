@@ -5,10 +5,12 @@ public class Parcelle
 {
     public List<string> Emplacements {get; set;} //Les emplacements sont les "unités d'espace" dans une parcelle. Il y en a 6 dans chaque parcelle.
     public string NumParcelle {get; set;}
+    public List<Plante> Plantes {get; set;} //Repertorie les plantes dans la parcelle.
 
     public Parcelle(string numPetitTerrain, List<string> emplacements)
     {
         Emplacements = emplacements;
         NumParcelle = numPetitTerrain;
+        Plantes = new List<Plante> {};
     }
 }

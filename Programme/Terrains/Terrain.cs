@@ -1,9 +1,12 @@
+using System.Reflection;
+
 public abstract class Terrain
 {
     public string NumTerrain {get;set;} //Pour pouvoir identifier les terrains
     public double HumiditeTerrain {get; set;} //Allant de 0(très sec) à 1(très humide)
-    public List<Parcelle> Parcelles {get; set;} //Dans chaque terrain, il y a 6 emplacements pour pkanter des fleurs. Dans chacune des ces parcelles, il y a 6 "unités d'espace".
-    public string TypeTerrain {get; set;} = string.Empty; //Determine si le terrain est argileux, cailloux, tourbière ou mare.
+    public double EnsoleillementTerrain {get; set;} //Allant de 0(ombragé) à 1(plein soleil)
+    public List<Parcelle> Parcelles {get; set;} //Dans chaque terrain, il y a 6 emplacements pour planter des plantes. Dans chacune des ces parcelles, il y a 6 "unités d'espace".
+    public string TypeTerrain {get; set;} = string.Empty; //Determine si le terrain est argileux, rocheux, tourbière ou sableux.
 
     public Terrain(string numTerrain)
     {
@@ -16,19 +19,20 @@ public abstract class Terrain
             Parcelles.Add(parcelle);
         }
         NumTerrain = numTerrain;
+        EnsoleillementTerrain = 0.5; //La valeur par défault au moment de l'initalisation.
         if (TypeTerrain == "Tourbière") HumiditeTerrain = 1;
         else if (TypeTerrain == "Argileux") HumiditeTerrain = 0.4;
         else if (TypeTerrain == "Sableux") HumiditeTerrain = 0.7;
         else if (TypeTerrain == "Rocheux") HumiditeTerrain = 0.2;
     }
-
-    public void Arroser() //Ajouter la modification du taux d'eau des plantes
+    public void Arroser()
     {
         //MODIFIER LA VALEUR DE L'HUMIDITE DU TERRAIN
         bool robustesse = true;
         int intensiteArrosage;
         do
         {
+            Console.WriteLine("Vous avez choisi d'arroser votre terrain.");
             Console.WriteLine("A quel point voulez-vous arroser vos plantes ? (Tappez 1 2 ou 3)");
             string input = Console.ReadLine()!;
             robustesse = int.TryParse(input, out intensiteArrosage); //Renvoie false si la valeur saisie n'est pas un entier.
@@ -43,35 +47,54 @@ public abstract class Terrain
             }
             else robustesse = false;
         }while(robustesse == false);
-    
-        //MODIFIER L'ETAT DE LA PLANTE
-        foreach (var parcelle in Parcelles)
-        {
-            foreach(var emplacement in parcelle.Emplacements)
-            {
-                if (emplacement != "🟤")//Différent d'un emplacement vide + voir encore comment on gère les plantes qui prennent de la place (_?)
-                {
-                    //modifier le taux d'eau de la plante
-                }
-            }
-        }
     }
     public void Ombrager()
     {
-        //MODIFIER L'ETAT DE LA PLANTE
+        //MODIFIER LA VALEUR DE L'ENSOLEILLEMENT DU TERRAIN
+        bool robustesse = true;
+        do
+        {
+            Console.WriteLine("Vous avez choisi d'omrager votre terrain.");
+            Console.WriteLine("Voulez-vous ombrager votre terrain ? Tappez o ou n.");
+            string input = Console.ReadLine()!;
+            robustesse = (input == "o" || input == "n"); //Renvoie false si la valeur saisie n'est pas un entier.
+            if (robustesse == true && input == "o") //Va modifier la valeur de l'ensoleillement si la valeur entrée est o ou n.
+            {
+                EnsoleillementTerrain -= 0.3;
+            }
+            else robustesse = false;
+        }while(robustesse == false);
+    }
+    public void TraiterMaladie()
+    {
+        Console.WriteLine("Vous avez choisi de traiter les plantes de votre terrain.");
+        //EN CAS DE MALADIE, ENLEVE LES DOMMAGES CAUSEES A LA PLANTE.
         foreach (var parcelle in Parcelles)
         {
-            foreach(var emplacement in parcelle.Emplacements)
+            foreach (var plante in parcelle.Plantes)
             {
-                if (emplacement != "🟤")//Différent d'un emplacement vide + voir encore comment on gère les plantes qui prennent de la place (_?)
-                {
-                    //modifier l'ensoleillement de la plante
-                }
+                plante.VitesseCroissance += 0.4; //Une maladie inflige un dégat de 0.5 à la plante, la traiter permet de récupérer 0.1 points de croissance.
             }
         }
     }
-    public override string ToString()
+    public void Desherber()
     {
+        foreach(var parcelle in Parcelles)
+        {
+            int index = 0; //On veut récupérer l'indice des itérations emplacement.
+            foreach(var emplacement in parcelle.Emplacements)
+            {
+                if (emplacement == "🌱") 
+                {
+                    parcelle.Emplacements[index] = "🟤";
+                    index++;
+                }
+            } 
+        }
+    }
+    public override string ToString()
+    {   
+        //if CLASSIQUE
         string affichageSousTerrain = " ";
         foreach (var parcelle in Parcelles)
         {
@@ -84,15 +107,12 @@ public abstract class Terrain
         }
         string affichage = $"=== TERRAIN {NumTerrain} === \n     -> Type : {TypeTerrain}\n     -> Humidité : {HumiditeTerrain} \n Voici le détail des parcelles : {affichageSousTerrain}";
         return affichage;
+        
+        //if URGENCE
     }
 }
 
 
 /*Méthodes à mettre
 Drainer : faire un truc proportionnel aux nombre de plantes, enlever un peu d'eau à chaque tour, se fait automatiquement à la fin du jeu
-
- - Actions du joueur -
-Traiter :
-Proteger :
 */
-
