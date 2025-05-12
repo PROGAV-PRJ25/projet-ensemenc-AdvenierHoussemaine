@@ -5,6 +5,8 @@ public class Simulation
     static bool ModeUrgence =false;
     public Simulation(double pluviometrie,double temperature, double ensoleillement) //pluviometrie en cm d'averse sur le mois
     {
+        //creer l'année (une liste de mois) 
+        //creer les terrains 
         MeteoDuMois = new Meteo(pluviometrie,temperature,ensoleillement);
         //permet d'initialiser les valeurs 
         double MeteoDuMois.Pluviometrie = pluviometrie;
@@ -33,9 +35,13 @@ public class Simulation
             }
             else 
             {
+                // affichage du mois et de la meteo
+                Console.WriteLine(Simulation.MeteoDuMois());
                 //choix d'une créature qui nuit 
                 //affichage de la créature
+        
                 //affichage score d'action restant
+                //affichage des actions possibles 
                 while (actionRestantes>0 && rienFaire==false)
                 {
                     //demander l'action souhaité 
@@ -46,7 +52,6 @@ public class Simulation
                 }
             }
             //affichage de l'état du jeu 
-            Console.WriteLine(Simulation.MeteoDuMois());
             Console.WriteLine(Simulation.Terrain());
             // un temp de latence ou une attente que l'utilisateur tape sur une touche pour passer au prochain mois
              

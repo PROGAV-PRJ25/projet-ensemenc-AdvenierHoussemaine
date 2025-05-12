@@ -19,4 +19,18 @@ public class Meteo {
     }
 
     //mettre affichage to string
+    public override string ToString()
+    {
+        string description = "La météo du mois est la suivante";
+
+        if (insectes.Count > 0)
+        {
+            description += Environment.NewLine;
+            foreach (Insecte insecte in insectes)
+                description += "  " + insecte + Environment.NewLine;
+            description = description.Remove(description.Length - 1); // Dernier retour à la ligne
+        }
+
+        return description;
+    }
 }
