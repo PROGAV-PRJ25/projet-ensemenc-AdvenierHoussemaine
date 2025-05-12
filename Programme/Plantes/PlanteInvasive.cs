@@ -1,6 +1,6 @@
 public class PlanteInvasive: Plante
 {
-    public PlantesInvasive(Terrain terrainPlante, int positionParcelle) : base()
+    public PlanteInvasive(Terrain terrainPlante, int positionParcelle) : base()
     {
         ImagesPlante = new List<string> {"🌱"};
         TerrainPlante = terrainPlante;
