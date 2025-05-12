@@ -51,19 +51,19 @@ abstract class Plante {
             return-1; //la plante meurt 
         }
         // si on est pas dans ces températures préfére elle ne grandira pas 
-        if (Meteo.temperature<TemperaturePrefereMin)
+        if (Meteo.Temperature<TemperaturePrefereMin)
         {
-            VitesseCroissance= -(TemperaturePrefereMin-Meteo.temperature)/TemperaturePrefereMin; // on obtient -1 si on atteint zero degrés 
+            VitesseCroissance= -(TemperaturePrefereMin-Meteo.Temperature)/TemperaturePrefereMin; // on obtient -1 si on atteint zero degrés 
         }
-        if (Meteo.temperature>TemperaturePrefereMax)
+        if (Meteo.Temperature>TemperaturePrefereMax)
         {
-            if((Meteo.temperature/(2*TemperaturePrefereMax))>=1) //plus de deux fois la temperature max preferer resulte en la mort
+            if((Meteo.Temperature/(2*TemperaturePrefereMax))>=1) //plus de deux fois la temperature max preferer resulte en la mort
             {
                 return -1;
             }
             else
             {
-                VitesseCroissance = -Meteo.temperature/(2*TemperaturePrefereMax);
+                VitesseCroissance = -Meteo.Temperature/(2*TemperaturePrefereMax);
             }
             
         }
