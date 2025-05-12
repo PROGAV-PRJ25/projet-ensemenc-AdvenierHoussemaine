@@ -1,29 +1,21 @@
-//Plante que l'on plante en Mai, Juin ou Novembre, Octobre
+//Plante que l'on plante en Mai, Juin ou Novembre, Octobre.
 
-/*
 public class Ble : Cereales
 {
-    public Ble(Parcelle parcellePlante)
+    public Ble(Terrain terrainPlante, int positionParcelle)
     {
-        ParcellePlante = parcellePlante;
+        ImagesPlante = new List<string> {"🍂","🌾.0","🌾.1","🌾.2","🌾.3"};
+        TerrainPlante = terrainPlante;
+        ParcellePlante = TerrainPlante.Parcelles[positionParcelle]; //Inidique sur quelle parcelle du terrain se situe la plante.
         NomPlante = "Blé";
         NombreProduits = 5;
         SurfaceNecessaire = 1;
-        //SaisonSemis = avril, mai, juin
+        //SaisonSemis = octobren novembre, mai, juin
         BesoinHumidite = 0.3;
         BesoinLuminosite = 0.6;
         DureeDeMaturation = 6;
         //MaladiesContractables = (....)
-        
-        //On initalise les valeurs du jeu aux besoins de la plante
-        HumiditePlante = 0.3;
-        LuminositePlante = 0.6;
- 
-        
-        ---PAS SUR DE L'UTILITE---
-        TemperaturePrefereMin = 10;
-        TemperaturePrefereMax = 20; 
-        
+        TemperaturePrefereeMin = 10;
+        TemperaturePrefereeMax = 20;    
     }
 }
-*/

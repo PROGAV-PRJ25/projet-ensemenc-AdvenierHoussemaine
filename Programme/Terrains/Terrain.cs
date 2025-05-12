@@ -2,18 +2,18 @@ public abstract class Terrain
 {
     public string NumTerrain {get;set;} //Pour pouvoir identifier les terrains
     public double HumiditeTerrain {get; set;} //Allant de 0(très sec) à 1(très humide)
-    public List<Parcelle> SousTerrains {get; set;} //Dans chaque terrain, il y a 6 emplacements pour pkanter des fleurs. Dans chacune des ces parcelles, il y a 6 "unités d'espace".
+    public List<Parcelle> Parcelles {get; set;} //Dans chaque terrain, il y a 6 emplacements pour pkanter des fleurs. Dans chacune des ces parcelles, il y a 6 "unités d'espace".
     public string TypeTerrain {get; set;} = string.Empty; //Determine si le terrain est argileux, cailloux, tourbière ou mare.
 
     public Terrain(string numTerrain)
     {
         //Lorsque l'on initalise un terrain, il est vide 'o'.
         List<string> charInitiaux = new List<string> {"🟤", "🟤","🟤", "🟤", "🟤", "🟤"};
-        SousTerrains = new List<Parcelle> {};
+        Parcelles  = new List<Parcelle> {};
         for (int i=0; i<6; i++)
         {
             Parcelle parcelle = new Parcelle($"{numTerrain}.{i+1}", charInitiaux);
-            SousTerrains.Add(parcelle);
+            Parcelles.Add(parcelle);
         }
         NumTerrain = numTerrain;
         if (TypeTerrain == "Tourbière") HumiditeTerrain = 1;
@@ -45,7 +45,7 @@ public abstract class Terrain
         }while(robustesse == false);
     
         //MODIFIER L'ETAT DE LA PLANTE
-        foreach (var parcelle in SousTerrains)
+        foreach (var parcelle in Parcelles)
         {
             foreach(var emplacement in parcelle.Emplacements)
             {
@@ -59,7 +59,7 @@ public abstract class Terrain
     public void Ombrager()
     {
         //MODIFIER L'ETAT DE LA PLANTE
-        foreach (var parcelle in SousTerrains)
+        foreach (var parcelle in Parcelles)
         {
             foreach(var emplacement in parcelle.Emplacements)
             {
@@ -73,7 +73,7 @@ public abstract class Terrain
     public override string ToString()
     {
         string affichageSousTerrain = " ";
-        foreach (var parcelle in SousTerrains)
+        foreach (var parcelle in Parcelles)
         {
             string elementsListe = " ";
             foreach (var element in parcelle.Emplacements)

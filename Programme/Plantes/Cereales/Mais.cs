@@ -1,29 +1,20 @@
 //Saison de semis = mars/avril/mai
-
-/*
-public class Ble : Cereales
+public class Mais : Cereales
 {
-    public Mais(Parcelle parcellePlante)
+    public Mais(Terrain terrainPlante, int positionParcelle)
     {
-        ParcellePlante = parcellePlante;
+        ImagesPlante = new List<string> {"🍂","🌽.0","🌽.1","🌽.2","🌽.3"};
+        TerrainPlante = terrainPlante;
+        ParcellePlante = TerrainPlante.Parcelles[positionParcelle]; //Inidique sur quelle parcelle du terrain se situe la plante.
         NomPlante = "Mais";
         NombreProduits = 3;
         SurfaceNecessaire = 1;
-        //SaisonSemis = avril, mai, juin
+        //SaisonSemis = mars, avril, mai
         BesoinHumidite = 0.5;
         BesoinLuminosite = 0.5;
         DureeDeMaturation = 3;
         //MaladiesContractables = (....)
-        
-        //On initalise les valeurs du jeu aux besoins de la plante
-        HumiditePlante = 0.5;
-        LuminositePlante = 0.5;
- 
-        
-        ---PAS SUR DE L'UTILITE---
-        TemperaturePrefereMin = 10;
-        TemperaturePrefereMax = 20; 
-        
+        TemperaturePrefereeMin = 10;
+        TemperaturePrefereeMax = 20;  
     }
 }
-*/

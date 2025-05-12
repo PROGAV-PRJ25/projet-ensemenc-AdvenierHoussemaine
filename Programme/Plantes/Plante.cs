@@ -1,4 +1,4 @@
-/*
+
 public abstract class Plante {
 
     //CARACTERISTIQUES DE LA PLANTE
@@ -11,17 +11,18 @@ public abstract class Plante {
     public Saison SaisonSemi {get; protected set;}
     public double BesoinHumidite {get; set;} //Compris entre 0 et 1.
     public double BesoinLuminosite {get; protected set;} //Compris entre 0 et 1.
-    public double TemperaturePrefereMin {get; protected set;}
-    public double TemperaturePrefereMax {get; protected set;}
+    public double TemperaturePrefereeMin {get; protected set;}
+    public double TemperaturePrefereeMax {get; protected set;}
     public int SurfaceNecessaire {get; protected set;} //Détermine le nombre d'emplacement dans une parcelle qu'il lui faut pour grandir.
 
     //DONNEES INITIALES QUI CHANGENT AU COURS DE LA PARTIE
     public double VitesseCroissance {get; set;} //Symbolise l'état de la plante, compris entre -1 et 1 :  -1 = mort, 0 = pas de changement, entre 0.5 et 1 = double la taille lors d'un tour de jeu.
     public Terrain TerrainPlante {get; protected set;} //Indique ou se situe la plante.
+    public Parcelle ParcellePlante {get; set;} //Indique sur quelle parcelle du terrain se situe la plante.
 
     //CONTRAINTES
     public List<Maladies> MaladiesContractables {get; protected set;}
-    public int DureeDeMaturation {get; set;}
+    public int DureeDeMaturation {get; set;} //En mois.
 
     public Plante()
     {
@@ -69,4 +70,3 @@ public abstract class Plante {
         }
      }
 }
-*/
