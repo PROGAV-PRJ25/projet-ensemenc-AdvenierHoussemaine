@@ -1,9 +1,6 @@
 public class Saison {
     public string NomSaison {get; set;}
     public List<Mois> MoisDeLaSaison {get; set;}
-   /* public Mois Mois1;
-    public Mois Mois2;
-    public Mois Mois3;*/
 
     public Saison(string nomSaison)
     {

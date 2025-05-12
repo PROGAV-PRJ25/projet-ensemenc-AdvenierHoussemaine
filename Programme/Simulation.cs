@@ -1,41 +1,41 @@
 public class Simulation 
 {
     static private Random rng = new Random(); //est utilisé pour l'aléatoire
-    protected Meteo MeteoDuMois;
-    static bool ModeUrgence =false;
-    public Simulation(double pluviometrie,double temperature, double ensoleillement) //pluviometrie en cm d'averse sur le mois
+    protected List<Saison> Annee;
+    static bool ModeUrgence = false;
+    public bool conditionArret = false;
+    public Simulation() //eventuellement rentrer en parametre le pays qu'on veut jouer dans si on garde cette fonctionalité là
     {
         //creer l'année (une liste de mois) 
+        Annee = new List<Saison>
+        {
+            new ("Printemps"),
+            new ("Été"),
+            new ("Automne"),
+            new ("Hiver")
+        };
         //creer les terrains 
-        MeteoDuMois = new Meteo(pluviometrie,temperature,ensoleillement);
-        //permet d'initialiser les valeurs 
-        double MeteoDuMois.Pluviometrie = pluviometrie;
-        double MeteoDuMois.Temperature = temperature;
-        double MeteoDuMois.Ensoleillement = ensoleillement;
 
     }
 
     public void Simuler()
     {
-        while (bool conditionArret==false)
+        while (conditionArret==false)
         {
-            //les modification de météo d'un mois à l'autre
-            int fluctuationPluviometrie = rng.Next(-2, 2 + 1);
-            MeteoDuMois.Pluviometrie = Math.Abs(MeteoDuMois.Pluviometrie+ fluctuationPluviometrie);
-            int fluctuationTemperature = rng.Next(-2, 2 + 1);
-            MeteoDuMois.Temperature += fluctuationTemperature;
-            MeteoDuMois.Ensoleillement*= rng.NextDouble();
+            // affichage du mois et de la meteo 
+            Console.WriteLine(Annee[])
+            //on regarde si on est dans le mode urgence ou pas 
             int risqueModeUrgence = rng.Next(0, 5);
             if (risqueModeUrgence==0)
             {
                 ModeUrgence = true;
-                //choix de l'urgence 
+                //choix de l'urgence et dire qu'on est en mode urgence ce mois ci  
                 //affichage du nom de l'urgence 
                 //boucle while l'urgence est pas réglé ou que le joueur à perdu 
             }
             else 
             {
-                // affichage du mois et de la meteo
+                
                 Console.WriteLine(Simulation.MeteoDuMois());
                 //choix d'une créature qui nuit 
                 //affichage de la créature
@@ -51,6 +51,7 @@ public class Simulation
                     //affichage score d'action restantes
                 }
             }
+            //verification si la condition d'arret est validé
             //affichage de l'état du jeu 
             Console.WriteLine(Simulation.Terrain());
             // un temp de latence ou une attente que l'utilisateur tape sur une touche pour passer au prochain mois
