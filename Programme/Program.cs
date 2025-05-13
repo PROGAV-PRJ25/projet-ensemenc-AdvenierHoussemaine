@@ -1,4 +1,10 @@
-﻿/*
+﻿TerrainTourbiere terrain1 = new TerrainTourbiere("1");
+Console.WriteLine(terrain1);
+terrain1.Ombrager();
+Console.WriteLine(terrain1);
+
+
+/*
 new class Affichage ()
 {
     List <List<string>> Grille {get; set;}
@@ -26,3 +32,4 @@ new class Affichage ()
     }
 }
 */
+
