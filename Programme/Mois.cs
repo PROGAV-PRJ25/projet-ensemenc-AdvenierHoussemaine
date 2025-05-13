@@ -81,6 +81,7 @@ public class Mois
             Ensoleillement = 0.4 ;
         }
     }
+    //eventuellement inutile si on fait le tostring dans la classe annee
     public override string ToString()
     {
         return $"La météo du mois de {NomDuMois} est la suivante \n Température moyenne : {Temperature}\n Cm de pluie dans le mois : {Pluviometrie}\n Taux de lumiére moyenne pendant une journée : {Ensoleillement}";

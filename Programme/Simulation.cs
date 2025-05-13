@@ -1,19 +1,14 @@
 public class Simulation 
 {
     static private Random rng = new Random(); //est utilisé pour l'aléatoire
-    protected List<Saison> Annee;
+    protected Annee AnneeSimulation;
     static bool ModeUrgence = false;
     public bool conditionArret = false;
     public Simulation() //eventuellement rentrer en parametre le pays qu'on veut jouer dans si on garde cette fonctionalité là
     {
-        //creer l'année (une liste de mois) 
-        Annee = new List<Saison>
-        {
-            new ("Printemps"),
-            new ("Été"),
-            new ("Automne"),
-            new ("Hiver")
-        };
+        //creer l'année 
+        AnneeSimulation = new Annee();
+
         //creer les terrains 
 
     }
@@ -22,8 +17,10 @@ public class Simulation
     {
         while (conditionArret==false)
         {
+            int X= Annee.NomDeLannee;
             // affichage du mois et de la meteo 
-            Console.WriteLine(Annee[])
+            Console.WriteLine(AnneeSimulation.AnneeActuel[AnneeSimulation.AnneeActuel[ AnneeSimulation.SaisonActuel]])
+
             //on regarde si on est dans le mode urgence ou pas 
             int risqueModeUrgence = rng.Next(0, 5);
             if (risqueModeUrgence==0)
