@@ -57,7 +57,7 @@ public abstract class Terrain
             Console.WriteLine("Vous avez choisi d'omrager votre terrain.");
             Console.WriteLine("Voulez-vous ombrager votre terrain ? Tappez o ou n.");
             string input = Console.ReadLine()!;
-            robustesse = (input == "o" || input == "n"); //Renvoie false si la valeur saisie n'est pas un entier.
+            robustesse = (input == "o" || input == "n"); //Renvoie false si la valeur saisie n'est o ou n.
             if (robustesse == true && input == "o") //Va modifier la valeur de l'ensoleillement si la valeur entrée est o ou n.
             {
                 EnsoleillementTerrain -= 0.3;

@@ -16,20 +16,38 @@ public class Annee {
         };
     }
 
-    public void ChangerDeMois()
+   public void ChangerDeMois()
     {
-        if(MoisActuel==2)
+        if(MoisActuel==0 || SaisonActuel==3) //on etais en decembre
+        {
+            NomDeLannee++;
+            MoisActuel++;
+        }
+        else if (MoisActuel==2) // il y a changement de saison
         {
             MoisActuel=0;
-            if(SaisonActuel==11)
+            if(SaisonActuel==3) //on etais en fevrier
+            {
+                SaisonActuel=0; //on arrive au printemps
+
+            }
+            else
+            {
+                SaisonActuel++;
+            }
         }
-        else
+        else //il n'y a pas de changement d'année ou de saison
         {
             MoisActuel++;
         }
     }
 
-
+    public override string ToString()
+    {
+        Saison saison = AnneeActuel[SaisonActuel];
+        Mois mois = saison.MoisDeLaSaison[MoisActuel];  
+        return $"{mois.NomDuMois} {AnneeActuel}, {SaisonActuel} \n  --> La météo est la suivante :\n        - Température moyenne : {mois.Temperature}\n        - Cm de pluie dans le mois : {mois.Pluviometrie}\n    - Taux de lumiére moyenne pendant une journée : {mois.Ensoleillement}";
+    }
     //methode changer de mois 
     //eventuelement un to string permettant de faire un résumé de l'année
 }
