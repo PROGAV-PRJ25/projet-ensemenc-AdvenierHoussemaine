@@ -14,6 +14,89 @@ public class Parcelle
         Plantes = new List<Plante> {};
     }
 
+    public void Planter(Parcelle parcelle)
+    { 
+      bool robustessePlanter = false;
+      do
+      {
+        Console.WriteLine("Quelle plante voulez-vous planter ? \n Copiez-collez l'emoji : \n  -Décoratives : 🎍 🌵 🪷 🌷\n -Céréales : 🌾 🌽 🌻 \n -Fruits : 🍇 🌶️ 🍓 🥕");
+        string input = Console.ReadLine()!;
+        switch(input)
+        {
+          case "🎍":
+            Bamboo bamboo = new Bamboo(parcelle);
+            parcelle.Emplacements.Add(bamboo.ImagesPlante![1]); //Ajoute l'image à l'affichage
+            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            robustessePlanter = true;
+            break;
+          case "🌵":
+            Cactus cactus = new Cactus(parcelle);
+            parcelle.Emplacements.Add(cactus.ImagesPlante![1]); //Ajoute l'image à l'affichage
+            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            robustessePlanter = true;
+            break;
+          case "🪷":
+            Nenuphar nenuphar = new Nenuphar(parcelle);
+            parcelle.Emplacements.Add(nenuphar.ImagesPlante![1]); //Ajoute l'image à l'affichage
+            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            robustessePlanter = true;
+            break;
+          case "🌷":
+            Tulipe tulipe = new Tulipe(parcelle);
+            parcelle.Emplacements.Add(tulipe.ImagesPlante![1]); //Ajoute l'image à l'affichage
+            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            robustessePlanter = true;
+            break;
+          case "🌾":
+            Ble ble = new Ble(parcelle);
+            parcelle.Emplacements.Add(ble.ImagesPlante![1]); //Ajoute l'image à l'affichage
+            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            robustessePlanter = true;
+            break;
+          case "🌽":
+            Mais mais = new Mais(parcelle);
+            parcelle.Emplacements.Add(mais.ImagesPlante![1]); //Ajoute l'image à l'affichage
+            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            robustessePlanter = true;
+            break;
+          case "🌻":
+            Tournesol tournesol = new Tournesol(parcelle);
+            parcelle.Emplacements.Add(tournesol.ImagesPlante![1]); //Ajoute l'image à l'affichage
+            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            robustessePlanter = true;
+            break;
+          case "🥕":
+            Carotte carotte = new Carotte(parcelle);
+            parcelle.Emplacements.Add(carotte.ImagesPlante![1]); //Ajoute l'image à l'affichage
+            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            robustessePlanter = true;
+            break;
+          case "🍓":
+            Fraise fraise = new Fraise(parcelle);
+            parcelle.Emplacements.Add(fraise.ImagesPlante![1]); //Ajoute l'image à l'affichage
+            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            robustessePlanter = true;
+            break;
+          case "🌶️":
+            Piment piment = new Piment(parcelle);
+            parcelle.Emplacements.Add(piment.ImagesPlante![1]); //Ajoute l'image à l'affichage
+            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            robustessePlanter = true;
+            break;
+          case "🍇":
+            Raisin raisin = new Raisin(parcelle);
+            parcelle.Emplacements.Add(raisin.ImagesPlante![1]); //Ajoute l'image à l'affichage
+            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            robustessePlanter = true;
+            break;
+          default :
+            robustessePlanter = false;
+            Console.WriteLine("Choissiez une plante existante.");
+            break;
+        }
+      }while(robustessePlanter == false);
+        
+    }
     public void Arroser()
     {
       //MODIFIER LA VALEUR DE L'HUMIDITE DU TERRAIN
@@ -25,7 +108,7 @@ public class Parcelle
         Console.WriteLine("A quel point voulez-vous arroser vos plantes ? (Tappez 1 2 ou 3)");
         string input = Console.ReadLine()!;
         robustesse = int.TryParse(input, out intensiteArrosage); //Renvoie false si la valeur saisie n'est pas un entier.
-        if (robustesse == true) //Va modofier la valeur de l'humidité si la valeur entrée est un entier.
+        if (robustesse == true) //Va modifier la valeur de l'humidité si la valeur entrée est un entier.
         {
           intensiteArrosage = Convert.ToInt32(input);
           //Il y a trois intensités d'arrosage, le joueur peut tapper 1 2 ou 3.
@@ -46,7 +129,7 @@ public class Parcelle
         Console.WriteLine("Vous avez choisi d'omrager votre terrain.");
         Console.WriteLine("Voulez-vous ombrager votre terrain ? Tappez o ou n.");
         string input = Console.ReadLine()!;
-        robustesse = (input == "o" || input == "n"); //Renvoie false si la valeur saisie n'est o ou n.
+        robustesse = (input == "o" || input == "n"); //Renvoie false si la valeur saisie n'est pas o ou n.
         if (robustesse == true && input == "o") //Va modifier la valeur de l'ensoleillement si la valeur entrée est o ou n.
         {
           EnsoleillementParcelle -= 0.3;
@@ -69,7 +152,7 @@ public class Parcelle
       int index = 0; //On veut récupérer l'indice des itérations emplacement.
       foreach(var emplacement in Emplacements)
       {
-        if (emplacement == "🌱") 
+        if (emplacement == "🌱" || emplacement == "🍂") 
         {
           Emplacements[index] = "🟤";
           index++;

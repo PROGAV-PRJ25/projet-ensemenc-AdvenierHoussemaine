@@ -1,10 +1,8 @@
 public class Fraise: PlantesDecoratives
 {
-    public Fraise(Terrain terrainPlante, int positionParcelle)
+    public Fraise(Parcelle parcellePlante) : base(parcellePlante)
     {
         ImagesPlante = new List<string> {"🍂","🍓.0","🍓.1","🍓.2","🍓.3"};
-        TerrainPlante = terrainPlante;
-        ParcellePlante = TerrainPlante.Parcelles[positionParcelle]; //Inidique sur quelle parcelle du terrain se situe la plante.
         NomPlante = "Fraise";
         //SaisonSemis = avril, mai, juin
         BesoinHumidite = 0.6;
