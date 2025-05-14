@@ -17,8 +17,8 @@ public class Annee {
             new ("Hiver")
         };
     }
-    
-    public void ChangerDeMois()
+
+   public void ChangerDeMois()
     {
         if(MoisActuel==0 || SaisonActuel==3) //on etais en decembre
         {
@@ -44,5 +44,12 @@ public class Annee {
         }
     }
 
+    public override string ToString()
+    {
+        Saison saison = AnneeActuel[SaisonActuel];
+        Mois mois = saison.MoisDeLaSaison[MoisActuel];  
+        return $"{mois.NomDuMois} {AnneeActuel}, {SaisonActuel} \n  --> La météo est la suivante :\n        - Température moyenne : {mois.Temperature}\n        - Cm de pluie dans le mois : {mois.Pluviometrie}\n    - Taux de lumiére moyenne pendant une journée : {mois.Ensoleillement}";
+    }
+    //methode changer de mois 
     //eventuelement un to string permettant de faire un résumé de l'année
 }
