@@ -17,9 +17,8 @@ public class Simulation
     {
         while (conditionArret==false)
         {
-            int X= Annee.NomDeLannee;
             // affichage du mois et de la meteo 
-            Console.WriteLine(AnneeSimulation.AnneeActuel[AnneeSimulation.AnneeActuel[ AnneeSimulation.SaisonActuel]])
+            Console.WriteLine(AnneeSimulation);
 
             //on regarde si on est dans le mode urgence ou pas 
             int risqueModeUrgence = rng.Next(0, 5);

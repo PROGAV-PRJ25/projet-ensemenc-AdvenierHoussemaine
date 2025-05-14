@@ -5,7 +5,7 @@ public abstract class Terrain
     public string NumTerrain {get;set;} //Pour pouvoir identifier les terrains
     public double HumiditeTerrain {get; set;} //Allant de 0(très sec) à 1(très humide)
     public double EnsoleillementTerrain {get; set;} //Allant de 0(ombragé) à 1(plein soleil)
-    public List<Parcelle> Parcelles {get; set;} //Dans chaque terrain, il y a 6 emplacements pour planter des plantes. Dans chacune des ces parcelles, il y a 6 "unités d'espace".
+    public List<Parcelle> Parcelles {get; set;} //Dans chaque terrain, il y a 12 emplacements pour planter des plantes. Dans chacune des ces parcelles, il y a 6 "unités d'espace".
     public string TypeTerrain {get; set;} = string.Empty; //Determine si le terrain est argileux, rocheux, tourbière ou sableux.
 
     public Terrain(string numTerrain)
