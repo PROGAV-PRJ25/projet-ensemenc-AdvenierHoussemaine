@@ -73,12 +73,12 @@ public class Simulation
             //-----MODE CLASSIQUE------
             else 
             {   
-                int animal = rng.Next(1, 4);
+                int animal = rng.Next(0, 4);
                 //Sanglier
                 if (animal == 0)
                 {
                     Sanglier sanglier = new Sanglier();
-                    sanglier.Action();
+                    if (TerrainSimulation.TerrainProtege == false) sanglier.Action();
                     //Console.WriteLine(TerrainSimulation)
                 }
                 //Escargot
@@ -112,10 +112,10 @@ public class Simulation
                 int parcelle;
                 do
                 {
-                    Console.WriteLine("Vous pouvez : \n 1) Arroser une parcelle : 2🔔. \n 2) Déserber une parcelle 2🔔. \n 3) Ombrager une parcelle 5🔔. \n 4) Traiter le sol de votre parcelle pour les soigner une maladie 5🔔 \n 5) Planter une plante 1🔔 \n Tappez 1, 2, 3, 4, 5 ou 0 (pour ne rien faire).");
+                    Console.WriteLine("Vous pouvez : \n 1) Arroser une parcelle : 2🔔. \n 2) Déserber une parcelle 2🔔. \n 3) Ombrager une parcelle 5🔔. \n 4) Traiter le sol de votre parcelle pour les soigner une maladie 5🔔 \n 5) Planter une plante 1🔔 6) Installer un barrière 15🔔\n Tappez 1, 2, 3, 4, 5, 6 ou 0 (pour ne rien faire).");
                     string inputTerrain = Console.ReadLine()!;
                     robustesseAction = int.TryParse(inputTerrain, out action); //Renvoie false si la valeur saisie n'est pas un entier.
-                    if (action < 6 && action > 0) //Verifier que l'input du joueur est un entier compris entre 1 et 4.
+                    if (action < 7 && action > 0) //Verifier que l'input du joueur est un entier compris entre 1 et 4.
                     {
                         do
                         {
@@ -152,6 +152,12 @@ public class Simulation
                                 case 5:
                                     TerrainSimulation.Parcelles[parcelle-1].Planter(TerrainSimulation.Parcelles[parcelle-1]);
                                     ArgentJoueur -= 1; //Voir si on change le prix en fonction de la plante
+                                    break;
+                                case 6:
+                                    TerrainSimulation.Proteger();
+                                    robustesseAction = false;
+                                    robustesseParcelle = true;
+                                    ArgentJoueur -= 5;
                                     break;
                                 default:
                                     Console.WriteLine("L'action que vous avez choisie n'existe pas.");
