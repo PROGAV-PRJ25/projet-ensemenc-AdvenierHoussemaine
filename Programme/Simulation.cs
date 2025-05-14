@@ -73,6 +73,7 @@ public class Simulation
             //-----MODE CLASSIQUE------
             else 
             {   
+                /*
                 int animal = rng.Next(0, 4);
                 //Sanglier
                 if (animal == 0)
@@ -102,6 +103,7 @@ public class Simulation
                     ver.Action();
                     //Console.WriteLine(TerrainSimulation)
                 }
+                */
                 
                 //ACTIONS DU JOUEUR
                 Console.WriteLine("Vous allez pouvoir vous occuper de votre jardin.");
