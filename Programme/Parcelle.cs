@@ -1,5 +1,7 @@
 /*Les parcelles sont des "sous-terrains" dans les terrains.
   Les actions du joueur agissent que sur une parcelle.*/
+using System.Runtime.CompilerServices;
+
 public class Parcelle
 {
     public List<string> Emplacements {get; set;} //Les emplacements sont les "unités d'espace" dans une parcelle. Il y en a 12 dans chaque parcelle.
@@ -145,7 +147,6 @@ public class Parcelle
             {
                 plante.VitesseCroissance += 0.4; //Une maladie inflige un dégat de 0.5 à la plante, la traiter permet de récupérer 0.1 points de croissance.
             }
-        //Si y'a des animaux gentils, ca les fait partir.
     }
     public void Desherber()
     {
@@ -159,4 +160,5 @@ public class Parcelle
         }
       } 
     }
+
 }

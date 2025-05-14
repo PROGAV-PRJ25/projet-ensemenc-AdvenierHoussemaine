@@ -4,9 +4,4 @@ public class TerrainTourbiere : Terrain
     {
         TypeTerrain = "Tourbière";
     }
-
-    public void ProtegerAvecPoissons()
-    {
-        //Mettre des poissons qui enlèvent les parasites des plantes
-    }
 }
