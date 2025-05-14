@@ -7,9 +7,9 @@ public class Escargot : Animaux
         NomAnimal="Escargot";
     }
 
-    public override void Action(int parcelleDepart, int emplacementDepart) //les 
+    public override void Action(int parcelleDepart, int emplacementDepart) //les escargots mangent tout les fruits d'une parcelle 
     {
-        if(TerrainAnimal.Parcelles[parcelleDepart]>0.3) //on peut modifier la valeur mais c'est pour indiquer qu'il n'aiment pas quand c'est sec
+        if(TerrainAnimal.Parcelles[parcelleDepart].HumiditeParcelle>0.3) //on peut modifier la valeur mais c'est pour indiquer qu'il n'aiment pas quand c'est sec
         {
 
         }
