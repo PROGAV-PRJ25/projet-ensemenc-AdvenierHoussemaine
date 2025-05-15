@@ -1,5 +1,4 @@
 using System.Runtime.Serialization;
-
 public abstract class Animaux
 {
     public int ParcellePositionAnimal { get; set; }

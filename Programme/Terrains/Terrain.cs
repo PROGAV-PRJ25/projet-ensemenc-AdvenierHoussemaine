@@ -25,6 +25,14 @@ public abstract class Terrain
             parcelle.EnsoleillementParcelle = EnsoleillementTerrain;
             Parcelles.Add(parcelle);
         }
+        foreach(var parcelle in Parcelles)
+        {
+            for(int i=0; i<6; i++)
+            {
+                PlanteNull Plantenull = new PlanteNull(parcelle);
+                parcelle.Plantes.Add(Plantenull); //AJoute que des plantes nulles à l'initalisation.
+            }
+        }
         EnsoleillementTerrain = 0.5; //La valeur par défault au moment de l'initalisation.
     }
     

@@ -1,10 +1,8 @@
 public class PlanteInvasive: Plante
 {
-    public PlanteInvasive(Terrain terrainPlante, int positionParcelle) : base()
+    public PlanteInvasive(Parcelle parcellePlante) : base(parcellePlante)
     {
         ImagesPlante = new List<string> {"🌱"};
-        TerrainPlante = terrainPlante;
-        ParcellePlante = TerrainPlante.Parcelles[positionParcelle]; //Indique sur quelle parcelle du terrain se situe la plante.
         NomPlante = "Weed";
         NombreProduits = 0;
         SurfaceNecessaire = 1;

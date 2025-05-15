@@ -27,10 +27,12 @@ public abstract class Plante
     public Plante(Parcelle parcellePlante)
     {
         ParcellePlante = parcellePlante;
+
         VitesseCroissance = 0; //Initalisée à "pas de croissance" pour toutes les plantes.
     }
 
-    public double VerificationEtatPlante(Mois moisActuel){ //Si retourne 0 la plante survit et grandit pas. Si elle retourne 1 elle est à sa croissance maximale. Si elle retourne -1 elle meurt et les nombre négatifs signifient une décroissance.
+    public double VerificationEtatPlante(Mois moisActuel)
+    { //Si retourne 0 la plante survit et grandit pas. Si elle retourne 1 elle est à sa croissance maximale. Si elle retourne -1 elle meurt et les nombre négatifs signifient une décroissance.
         //Verification pour savoir si elle est en etat de survivre.
         if (BesoinHumidite > ParcellePlante!.HumiditeParcelle || BesoinLuminosite > ParcellePlante!.EnsoleillementParcelle)
         {

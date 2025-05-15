@@ -16,7 +16,7 @@ public class Parcelle
         Plantes = new List<Plante> {};
     }
 
-    public void Planter(Parcelle parcelle)
+    public void Planter(Parcelle parcelle, int positionParcelle)
     { 
       bool robustessePlanter = false;
       do
@@ -28,7 +28,7 @@ public class Parcelle
           case "🎍":
             Bamboo bamboo = new Bamboo(parcelle);
             parcelle.Emplacements.Add(bamboo.ImagesPlante![1]); //Ajoute l'image à l'affichage
-            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            parcelle.Plantes[positionParcelle] = bamboo;
             robustessePlanter = true;
             break;
           case "🌵":
