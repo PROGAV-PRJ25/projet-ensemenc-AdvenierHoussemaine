@@ -109,8 +109,13 @@ public class Parcelle
     public void InfluenceSolei(Mois moisActuel)
     {
       // on initialise l'ensoleillement de la parcelle 
-      
-
+      EnsoleillementParcelle= moisActuel.Ensoleillement;
+      //l'ensoleillement asseche la parcelle et reduit l'humidité de la parcelle
+      HumiditeParcelle-=HumiditeParcelle*moisActuel.Ensoleillement; // si il y a beaucoup de solei et que la parcelle est très humide ca évaporera le plus 
+      if (HumiditeParcelle<0)
+      {
+        HumiditeParcelle=0;
+      }
     }
 
     public void Arroser()
