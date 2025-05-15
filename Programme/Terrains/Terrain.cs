@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Text;
 
 public abstract class Terrain
 {
@@ -15,11 +16,11 @@ public abstract class Terrain
         else if (TypeTerrain == "Argileux") HumiditeTerrain = 0.4;
         else if (TypeTerrain == "Sableux") HumiditeTerrain = 0.7;
         else if (TypeTerrain == "Rocheux") HumiditeTerrain = 0.2;
-        //Lorsque l'on initalise un terrain, il est fait d'emplacements vides '🟤'.
-        List<string> charInitiaux = new List<string> {"🟤", "🟤","🟤", "🟤", "🟤", "🟤", "🟤", "🟤","🟤", "🟤", "🟤", "🟤"};
         Parcelles  = new List<Parcelle> {};
         for (int i=0; i<6; i++)
         {
+            //Lorsque l'on initalise un terrain, il est fait d'emplacements vides '🟤'.
+            String [] charInitiaux = new string[] {"🟤", "🟤","🟤", "🟤", "🟤", "🟤", "🟤", "🟤","🟤", "🟤", "🟤", "🟤"};
             Parcelle parcelle = new Parcelle(i+1, charInitiaux);
             parcelle.HumiditeParcelle = HumiditeTerrain;
             parcelle.EnsoleillementParcelle = EnsoleillementTerrain;
@@ -47,7 +48,7 @@ public abstract class Terrain
         string affichageSousTerrain = " ";
         if (TerrainProtege == true)
         {
-            affichageSousTerrain += "🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱";
+            affichageSousTerrain += "\n                  🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱";
         }
         foreach (var parcelle in Parcelles)
         {
@@ -83,6 +84,7 @@ public abstract class Terrain
             }
         }
         //Affiche la deuxième ligne
+        affichage += "\n";
         for(int i=0; i<3; i++)
         {
             affichage += "  ";
@@ -92,10 +94,10 @@ public abstract class Terrain
             }
         }
         //Affiche le nom des parcelles
-        for(int i=0; i<3; i++)
         affichage += "\n   Parcelle 1      Parcelle 2      Parcelle 3";
         //AFFICHAGE DES 3 PARCELLES SUIVANTES
-        //Affiche la première ligne 
+        //Affiche la première ligne
+        affichage += "\n";
         for(int i=3; i<6; i++)
         {
             affichage += "  ";
@@ -105,6 +107,7 @@ public abstract class Terrain
             }
         }
         //Affiche la deuxième ligne
+        affichage += "\n";
         for(int i=3; i<6; i++)
         {
             affichage += "  ";

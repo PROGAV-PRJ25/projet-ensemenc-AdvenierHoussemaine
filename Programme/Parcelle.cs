@@ -4,16 +4,16 @@ using System.Runtime.CompilerServices;
 
 public class Parcelle
 {
-    public List<string> Emplacements {get; set;} //Les emplacements sont les "unités d'espace" dans une parcelle. Il y en a 12 dans chaque parcelle.
+    public string [] Emplacements {get; set;} //Les emplacements sont les "unités d'espace" dans une parcelle. Il y en a 12 dans chaque parcelle.
     public int NumParcelle {get; set;}
     public double HumiditeParcelle {get; set;} //Allant de 0(très sec) à 1(très humide)
     public double EnsoleillementParcelle {get; set;} //Allant de 0(ombragé) à 1(plein soleil)
     public List<Plante> Plantes {get; set;} //Repertorie les plantes dans la parcelle.
-    public Parcelle(int numPetitTerrain, List<string> emplacements)
+    public Parcelle(int numPetitTerrain, string [] emplacements)
     {
         Emplacements = emplacements;
         NumParcelle = numPetitTerrain;
-        Plantes = new List<Plante> {};
+        Plantes = new List<Plante> (new PlanteNull[12]); //On initialise avec 12 plantes null.
     }
 
     public void Planter(Parcelle parcelle, int positionParcelle)

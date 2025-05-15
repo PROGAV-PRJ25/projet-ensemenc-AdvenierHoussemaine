@@ -27,7 +27,6 @@ public abstract class Plante
     public Plante(Parcelle parcellePlante)
     {
         ParcellePlante = parcellePlante;
-
         VitesseCroissance = 0; //Initalisée à "pas de croissance" pour toutes les plantes.
     }
 
