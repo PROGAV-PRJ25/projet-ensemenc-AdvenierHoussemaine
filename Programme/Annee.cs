@@ -20,7 +20,7 @@ public class Annee {
 
    public void ChangerDeMois()
     {
-        if(MoisActuel==0 || SaisonActuel==3) //on etais en decembre
+        if(MoisActuel==0 || SaisonActuel==3) //on etait en decembre
         {
             NomDeLannee++;
             MoisActuel++;
@@ -28,7 +28,7 @@ public class Annee {
         else if (MoisActuel==2) // il y a changement de saison
         {
             MoisActuel=0;
-            if(SaisonActuel==3) //on etais en fevrier
+            if(SaisonActuel==3) //on etait en fevrier
             {
                 SaisonActuel=0; //on arrive au printemps
 
@@ -48,7 +48,7 @@ public class Annee {
     {
         Saison saison = AnneeActuel[SaisonActuel];
         Mois mois = saison.MoisDeLaSaison[MoisActuel];  
-        return $"{mois.NomDuMois} {AnneeActuel}, {SaisonActuel} \n  --> La météo est la suivante :\n        - Température moyenne : {mois.Temperature}\n        - Cm de pluie dans le mois : {mois.Pluviometrie}\n    - Taux de lumiére moyenne pendant une journée : {mois.Ensoleillement}";
+        return $"{mois.NomDuMois} \n  --> La météo est la suivante :\n        - Température moyenne : {mois.Temperature} °C\n        - Cm de pluie dans le mois : {mois.Pluviometrie} cm\n        - Taux de lumiére moyenne pendant une journée : {mois.Ensoleillement}";
     }
     //methode changer de mois 
     //eventuelement un to string permettant de faire un résumé de l'année

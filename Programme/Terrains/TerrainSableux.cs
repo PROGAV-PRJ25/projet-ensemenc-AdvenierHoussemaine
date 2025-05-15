@@ -4,8 +4,4 @@ public class TerrainSableux : Terrain
     {       
         TypeTerrain = "Sableux";
     }
-    public void ProtegerAvecBarriere()
-    {
-        //Mettre des poissons qui enlèvent les parasites des plantes
-    }
 }

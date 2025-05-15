@@ -1,5 +1,7 @@
 /*Les parcelles sont des "sous-terrains" dans les terrains.
   Les actions du joueur agissent que sur une parcelle.*/
+using System.Runtime.CompilerServices;
+
 public class Parcelle
 {
     public List<string> Emplacements {get; set;} //Les emplacements sont les "unités d'espace" dans une parcelle. Il y en a 12 dans chaque parcelle.
@@ -15,79 +17,82 @@ public class Parcelle
         Plantes = new List<Plante> {};
     }
 
-    public void Planter(Parcelle parcelle)
+    public void Planter(Parcelle parcelle, int positionParcelle)
     { 
       bool robustessePlanter = false;
       do
       {
-        Console.WriteLine("Quelle plante voulez-vous planter ? \n Copiez-collez l'emoji : \n  -Décoratives : 🎍 🌵 🪷 🌷\n -Céréales : 🌾 🌽 🌻 \n -Fruits : 🍇 🌶️ 🍓 🥕");
-        string input = Console.ReadLine()!;
+        Console.WriteLine("Quelle plante voulez-vous planter ? \n\n  -Décoratives : bamboo🎍, cactus🌵 nénuphar🪷, tulipe🌷\n  -Céréales : blé🌾, mais🌽, tournesol🌻 \n  -Fruits : raisin🍇, piment🌶️, fraise🍓, carotte🥕");
+        string input = Console.ReadLine()!.ToLower();
         switch(input)
         {
-          case "🎍":
+          case "bamboo":
             Bamboo bamboo = new Bamboo(parcelle);
-            parcelle.Emplacements.Add(bamboo.ImagesPlante![1]); //Ajoute l'image à l'affichage
-            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            parcelle.Emplacements[positionParcelle] = bamboo.ImagesPlante![1]; //Ajoute l'image à l'affichage
+            parcelle.Plantes[positionParcelle] = bamboo; //Ajouter la plante à la parcelle
             robustessePlanter = true;
             break;
-          case "🌵":
+          case "cactus":
             Cactus cactus = new Cactus(parcelle);
-            parcelle.Emplacements.Add(cactus.ImagesPlante![1]); //Ajoute l'image à l'affichage
-            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            parcelle.Emplacements[positionParcelle] = cactus.ImagesPlante![1]; //Ajoute l'image à l'affichage
+            parcelle.Plantes[positionParcelle] = cactus; //Ajouter la plante à la parcelle
             robustessePlanter = true;
             break;
-          case "🪷":
+          case "nénuphar":
+          case "nenuphar":
             Nenuphar nenuphar = new Nenuphar(parcelle);
-            parcelle.Emplacements.Add(nenuphar.ImagesPlante![1]); //Ajoute l'image à l'affichage
-            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            parcelle.Emplacements[positionParcelle] = nenuphar.ImagesPlante![1]; //Ajoute l'image à l'affichage
+            parcelle.Plantes[positionParcelle] = nenuphar; //Ajouter la plante à la parcelle
             robustessePlanter = true;
             break;
-          case "🌷":
+          case "tulipe":
             Tulipe tulipe = new Tulipe(parcelle);
-            parcelle.Emplacements.Add(tulipe.ImagesPlante![1]); //Ajoute l'image à l'affichage
-            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            parcelle.Emplacements[positionParcelle] = tulipe.ImagesPlante![1]; //Ajoute l'image à l'affichage
+            parcelle.Plantes[positionParcelle] = tulipe; //Ajouter la plante à la parcelle
             robustessePlanter = true;
             break;
-          case "🌾":
+          case "blé":
+          case "ble":
             Ble ble = new Ble(parcelle);
-            parcelle.Emplacements.Add(ble.ImagesPlante![1]); //Ajoute l'image à l'affichage
-            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            parcelle.Emplacements[positionParcelle] = ble.ImagesPlante![1]; //Ajoute l'image à l'affichage
+            parcelle.Plantes[positionParcelle] = ble; //Ajouter la plante à la parcelle
             robustessePlanter = true;
             break;
-          case "🌽":
+          case "mais":
+          case "maïs":
             Mais mais = new Mais(parcelle);
-            parcelle.Emplacements.Add(mais.ImagesPlante![1]); //Ajoute l'image à l'affichage
-            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            parcelle.Emplacements[positionParcelle] = mais.ImagesPlante![1]; //Ajoute l'image à l'affichage
+            parcelle.Plantes[positionParcelle] = mais; //Ajouter la plante à la parcelle
             robustessePlanter = true;
             break;
-          case "🌻":
+          case "tournesol":
             Tournesol tournesol = new Tournesol(parcelle);
-            parcelle.Emplacements.Add(tournesol.ImagesPlante![1]); //Ajoute l'image à l'affichage
-            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            parcelle.Emplacements[positionParcelle] = tournesol.ImagesPlante![1]; //Ajoute l'image à l'affichage
+            parcelle.Plantes[positionParcelle] = tournesol; //Ajouter la plante à la parcelle
             robustessePlanter = true;
             break;
-          case "🥕":
+          case "carotte":
             Carotte carotte = new Carotte(parcelle);
-            parcelle.Emplacements.Add(carotte.ImagesPlante![1]); //Ajoute l'image à l'affichage
-            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            parcelle.Emplacements[positionParcelle] = carotte.ImagesPlante![1]; //Ajoute l'image à l'affichage
+            parcelle.Plantes[positionParcelle] = carotte; //Ajouter la plante à la parcelle
             robustessePlanter = true;
             break;
-          case "🍓":
+          case "fraise":
             Fraise fraise = new Fraise(parcelle);
-            parcelle.Emplacements.Add(fraise.ImagesPlante![1]); //Ajoute l'image à l'affichage
-            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            parcelle.Emplacements[positionParcelle] = fraise.ImagesPlante![1]; //Ajoute l'image à l'affichage
+            parcelle.Plantes[positionParcelle] = fraise; //Ajouter la plante à la parcelle
             robustessePlanter = true;
             break;
-          case "🌶️":
+          case "piment":
             Piment piment = new Piment(parcelle);
-            parcelle.Emplacements.Add(piment.ImagesPlante![1]); //Ajoute l'image à l'affichage
-            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            parcelle.Emplacements[positionParcelle] = piment.ImagesPlante![1]; //Ajoute l'image à l'affichage
+            parcelle.Plantes[positionParcelle] = piment; //Ajouter la plante à la parcelle
             robustessePlanter = true;
             break;
-          case "🍇":
+          case "raisin":
             Raisin raisin = new Raisin(parcelle);
-            parcelle.Emplacements.Add(raisin.ImagesPlante![1]); //Ajoute l'image à l'affichage
-            //Voir comment ajouter à la liste de plantes. -- voir si c'est nécessaire ou si on utilise que les images.
+            parcelle.Emplacements[positionParcelle] = raisin.ImagesPlante![1]; //Ajoute l'image à l'affichage
+            parcelle.Plantes[positionParcelle] = raisin; //Ajouter la plante à la parcelle
             robustessePlanter = true;
             break;
           default :
@@ -170,7 +175,6 @@ public class Parcelle
             {
                 plante.VitesseCroissance += 0.4; //Une maladie inflige un dégat de 0.5 à la plante, la traiter permet de récupérer 0.1 points de croissance.
             }
-        //Si y'a des animaux gentils, ca les fait partir.
     }
     public void Desherber()
     {
@@ -184,4 +188,5 @@ public class Parcelle
         }
       } 
     }
+
 }

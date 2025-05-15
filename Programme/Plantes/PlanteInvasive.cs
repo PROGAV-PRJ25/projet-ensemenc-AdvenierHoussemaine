@@ -1,10 +1,8 @@
 public class PlanteInvasive: Plante
 {
-    public PlanteInvasive(Terrain terrainPlante, int positionParcelle) : base()
+    public PlanteInvasive(Parcelle parcellePlante) : base(parcellePlante)
     {
         ImagesPlante = new List<string> {"🌱"};
-        TerrainPlante = terrainPlante;
-        ParcellePlante = TerrainPlante.Parcelles[positionParcelle]; //Indique sur quelle parcelle du terrain se situe la plante.
         NomPlante = "Weed";
         NombreProduits = 0;
         SurfaceNecessaire = 1;
@@ -21,11 +19,11 @@ public class PlanteInvasive: Plante
     public void Developpement()
     {
         int index = 0; //On veut récupérer l'indice des itérations emplacement.
-        foreach(var emplacement in ParcellePlante.Emplacements)
+        foreach(var emplacement in ParcellePlante!.Emplacements)
         {
             if (emplacement == "🟤") 
             {
-                ParcellePlante.Emplacements[index] = ImagesPlante[0];
+                ParcellePlante.Emplacements[index] = ImagesPlante![0];
                 index++;
                 Console.WriteLine("Il faut desherber les plantes invasives,🌱. Sinon, elles peuvent empêcher vos plantes de se développer.");
             }
