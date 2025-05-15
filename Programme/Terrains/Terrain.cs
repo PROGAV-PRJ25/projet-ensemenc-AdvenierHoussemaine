@@ -11,7 +11,7 @@ public abstract class Terrain
     public Terrain()
     {
         TerrainProtege = false;
-        if (TypeTerrain == "Tourbière") HumiditeTerrain = 1;
+        if (TypeTerrain == "Tourbiere") HumiditeTerrain = 1;
         else if (TypeTerrain == "Argileux") HumiditeTerrain = 0.4;
         else if (TypeTerrain == "Sableux") HumiditeTerrain = 0.7;
         else if (TypeTerrain == "Rocheux") HumiditeTerrain = 0.2;
@@ -42,7 +42,7 @@ public abstract class Terrain
     }
 
     //AFFICHAGE MODE CLASSIQUE
-    public string ToClassiqueString() //Si ca fonctionne pas, faire Console.Writeline(affichage)
+    public void ToClassiqueString() //Si ca fonctionne pas, faire Console.Writeline(affichage)
     {   
         string affichageSousTerrain = " ";
         if (TerrainProtege == true)
@@ -59,11 +59,11 @@ public abstract class Terrain
             affichageSousTerrain += $"\n    Parcelle {parcelle.NumParcelle} : {elementsListe}";
         }
         string affichage = $"=== TERRAIN=== \n     -> Type : {TypeTerrain}\n     -> Humidité : {HumiditeTerrain} \n Voici le détail des parcelles : {affichageSousTerrain}";
-        return affichage;
+        Console.WriteLine(affichage);
     }
 
     //AFFICHAGE MODE URGENCE
-    public string ToUrgenceString(int diff) 
+    public void ToUrgenceString() 
     {   
         //On veut afficher toutes les parcelles de cette facon
         //  [Parcelle 1] [Parcelle 2] [Parcelle 3]
@@ -114,9 +114,8 @@ public abstract class Terrain
             }
         }
         //Affiche le nom des parcelles
-        affichage += "\n   Parcelle 4      Parcelle 5      Parcelle 6";
-        
-        return affichage;
+        affichage += "\n   Parcelle 4      Parcelle 5      Parcelle 6";     
+        Console.WriteLine(affichage);
     }
 }
 

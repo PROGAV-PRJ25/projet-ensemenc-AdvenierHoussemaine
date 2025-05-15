@@ -19,11 +19,11 @@ public class PlanteInvasive: Plante
     public void Developpement()
     {
         int index = 0; //On veut récupérer l'indice des itérations emplacement.
-        foreach(var emplacement in ParcellePlante.Emplacements)
+        foreach(var emplacement in ParcellePlante!.Emplacements)
         {
             if (emplacement == "🟤") 
             {
-                ParcellePlante.Emplacements[index] = ImagesPlante[0];
+                ParcellePlante.Emplacements[index] = ImagesPlante![0];
                 index++;
                 Console.WriteLine("Il faut desherber les plantes invasives,🌱. Sinon, elles peuvent empêcher vos plantes de se développer.");
             }

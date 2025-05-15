@@ -4,16 +4,16 @@ public class Simulation
 {
     static private Random rng = new Random(); //est utilisé pour l'aléatoire
     protected Annee AnneeSimulation;
-    static bool ModeUrgence = false;
     public bool ConditionArret = false;
     public int ArgentJoueur {get; set;}
     public Terrain TerrainSimulation {get; set;}
     public List<List<Plante>>? EnsemblePlantes {get; set;} //Utilisé pour répertorier toutes les plantes et avoir une vue d'ensemble sur le terrain.
     public Simulation(Terrain terrainJeu) //Prend en paramètre le type de terrain sur lequel le joueur veut jouer.
     {
-        ArgentJoueur = 0;
+        ArgentJoueur = 10; //Argent pour débuter le jeu
         AnneeSimulation = new Annee();
         TerrainSimulation = terrainJeu;
+        EnsemblePlantes = new List<List<Plante>>{};
         foreach (var parcelle in TerrainSimulation.Parcelles)
         {
             EnsemblePlantes!.Add(parcelle.Plantes); 
@@ -22,10 +22,10 @@ public class Simulation
     public bool CalculerConditionArret()
     {
         //On veut voir si 3/4 ou plus des 3/4 des plantes sont à une vitesse de croissance de -0,5 ou plus ou si la moitié des plantes sont mortes(CONTITION : si on a 10 plantes ou plus).
-        int nombreDePlantes = EnsemblePlantes!.Count;
+        int nombreDePlantes = EnsemblePlantes!.Sum(liste => liste.Count);
         int compteurPlantesFaibles = 0; //Voir combien de plantes ont une vitesse de croissance à moins de -0.5
         int compteurPlantesMortes = 0; //Voir combien de plantes ont une vitesse de croissance à -1.
-        foreach(var listePlante in EnsemblePlantes)
+        foreach(var listePlante in EnsemblePlantes!)
         {
             foreach(var plante in listePlante)
             {
@@ -34,7 +34,7 @@ public class Simulation
             }
         }
         if(compteurPlantesFaibles >= 0.75*nombreDePlantes) ConditionArret = true;
-        if (nombreDePlantes >= 10) ConditionArret = true;
+        if (nombreDePlantes >= 10 && compteurPlantesMortes >= 0.5 * nombreDePlantes) ConditionArret = true;
 
         //On veut mettre la condition à true si le joueur décide d'arrêter de jouer.
         bool robustesse = false;
@@ -62,10 +62,11 @@ public class Simulation
             
             //------MODE URGENCE------
             if (risqueModeUrgence == 1)
-            {
-                ModeUrgence = true;
-            
-                //choix de l'urgence et dire qu'on est en mode urgence ce mois ci  
+            {    
+                TerrainSimulation.ToUrgenceString();  
+                //choix de l'urgence et dire qu'on est en mode urgence ce mois ci 
+                Enfant enfant = new Enfant(TerrainSimulation);
+                enfant.Urgence();
                 //affichage du nom de l'urgence 
                 //boucle while l'urgence est pas réglé ou que le joueur à perdu 
             }
@@ -106,6 +107,7 @@ public class Simulation
                 */
                 
                 //ACTIONS DU JOUEUR
+                TerrainSimulation.ToClassiqueString(); 
                 Console.WriteLine("Vous allez pouvoir vous occuper de votre jardin.");
                 Console.WriteLine($"--> SOLDE : {ArgentJoueur}🔔");
                 bool robustesseAction = false;
@@ -114,7 +116,7 @@ public class Simulation
                 int parcelle;
                 do
                 {
-                    Console.WriteLine("Vous pouvez : \n 1) Arroser une parcelle : 2🔔. \n 2) Déserber une parcelle 2🔔. \n 3) Ombrager une parcelle 5🔔. \n 4) Traiter le sol de votre parcelle pour les soigner une maladie 5🔔 \n 5) Planter une plante 1🔔 6) Installer un barrière 15🔔\n Tappez 1, 2, 3, 4, 5, 6 ou 0 (pour ne rien faire).");
+                    Console.WriteLine("Vous pouvez : \n 1) Arroser une parcelle : 2🔔. \n 2) Déserber une parcelle 2🔔. \n 3) Ombrager une parcelle 5🔔. \n 4) Traiter le sol de votre parcelle pour les soigner une maladie 5🔔 \n 5) Planter une plante 1🔔 \n 6) Installer un barrière 15🔔\n Tappez 1, 2, 3, 4, 5, 6 ou 0 (pour ne rien faire).");
                     string inputTerrain = Console.ReadLine()!;
                     robustesseAction = int.TryParse(inputTerrain, out action); //Renvoie false si la valeur saisie n'est pas un entier.
                     if (action < 7 && action > 0) //Verifier que l'input du joueur est un entier compris entre 1 et 4.
@@ -152,14 +154,23 @@ public class Simulation
                                     ArgentJoueur -= 5;
                                     break;
                                 case 5:
-                                    TerrainSimulation.Parcelles[parcelle-1].Planter(TerrainSimulation.Parcelles[parcelle-1]);
-                                    ArgentJoueur -= 1; //Voir si on change le prix en fonction de la plante
+                                    foreach(var emplacement in TerrainSimulation.Parcelles[parcelle-1].Emplacements) //Parcours la liste pour trouver un emplacement "vide".
+                                    {
+                                        int positionParcelle = 0;
+                                        if (emplacement == "🟤")
+                                        {
+                                            TerrainSimulation.Parcelles[parcelle-1].Planter(TerrainSimulation.Parcelles[parcelle-1],positionParcelle);
+                                            ArgentJoueur -= 1; //Voir si on change le prix en fonction de la plante
+                                            break;
+                                        }
+                                        positionParcelle++;
+                                    }
                                     break;
                                 case 6:
                                     TerrainSimulation.Proteger();
                                     robustesseAction = false;
                                     robustesseParcelle = true;
-                                    ArgentJoueur -= 5;
+                                    ArgentJoueur -= 15;
                                     break;
                                 default:
                                     Console.WriteLine("L'action que vous avez choisie n'existe pas.");
@@ -168,7 +179,8 @@ public class Simulation
                         }while (robustesseParcelle == false);  
                     }
                     else if (action == 0) robustesseAction = true; //Sort de la boucle si le joueur ne veut pas/plus faire d'action.
-                }while (robustesseAction == false || ArgentJoueur < 1);
+                    TerrainSimulation.ToClassiqueString(); 
+                }while (robustesseAction == false && ArgentJoueur >= 1);
             }
             Console.WriteLine(TerrainSimulation);
             //Read key pour que le joueur fasse enter pour avancer dans le jeu.    

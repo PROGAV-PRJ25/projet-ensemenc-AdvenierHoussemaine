@@ -3,7 +3,7 @@ public class Nenuphar : PlantesDecoratives
     public Nenuphar (Parcelle parcellePlante) : base(parcellePlante)
     {
         ImagesPlante = new List<string> {"🍂","🪷.0","🪷.1","🪷.2","🪷.3"};
-        NomPlante = "Nénuphar";
+        NomPlante = "Nenuphar";
         SurfaceNecessaire = 1;
         //SaisonSemis = fevrier, mars, avril
         BesoinHumidite = 1;

@@ -20,6 +20,7 @@ public class Enfant
         bool rejouer = true; //Aussi utilisé pour vérifier la victoire : si rejouer = true alors le joueur a perdu, si false alors il a gagné.
         do
         {   
+            TerrainSimulation.ToUrgenceString(); 
             Console.Write("Votre choix (pierre, feuille, ciseaux) : ");
             string choixJoueur = Console.ReadLine()!.ToLower();
 
@@ -71,8 +72,6 @@ public class Enfant
         Console.WriteLine("URGENCE !!!! Un enfant capricieux joue dans votre potager et détruit vos plantes !");
         do{
             PierreFeuilleCiseaux();
-            
-
         }while(gagne == false);
         return TerrainSimulation;
     }
