@@ -34,7 +34,7 @@ public class Escargot : Animaux
         }
         else 
         {
-            return $"Des Escargots ont voulu manger dans la parcelle {ParcellePositionAnimal +1} mais il fesait trop sec, elles sont alors repartis "
+            return $"Des Escargots ont voulu manger dans la parcelle {ParcellePositionAnimal + 1} mais il fesait trop sec, elles sont alors repartis ";
         }
     }
 }
