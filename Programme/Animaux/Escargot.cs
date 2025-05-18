@@ -11,7 +11,10 @@ public class Escargot : Animaux
     {
         if(TerrainAnimal.Parcelles[parcelleDepart].HumiditeParcelle>0.3) //on peut modifier la valeur mais c'est pour indiquer qu'il n'aiment pas quand c'est sec
         {
-
+            for (int i = 0 ; i<12 ; i++)
+            {
+                if(TerrainAnimal.Parcelles[parcelleDepart].Emplacements[i][0]=="🍓")
+            }
         }
         else
         {

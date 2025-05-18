@@ -6,6 +6,7 @@ public class Parcelle
 {
     public string [] Emplacements {get; set;} //Les emplacements sont les "unités d'espace" dans une parcelle. Il y en a 12 dans chaque parcelle.
     public int NumParcelle {get; set;}
+    public double AbsorbtionDeLeau {get; set;} // allant de 0(absorbe rien) à (1 absorbe pleinement)
     public double HumiditeParcelle {get; set;} //Allant de 0(très sec) à 1(très humide)
     public double EnsoleillementParcelle {get; set;} //Allant de 0(ombragé) à 1(plein soleil)
     public List<Plante> Plantes {get; set;} //Repertorie les plantes dans la parcelle.
@@ -102,6 +103,26 @@ public class Parcelle
       }while(robustessePlanter == false);
         
     }
+    public void InfiltrationDeLaPluie(Mois moisActuel)
+    {//la pluviometrie est environ entre 5 et 10 cm par mois
+      HumiditeParcelle += moisActuel.Pluviometrie* AbsorbtionDeLeau/10;
+      if (HumiditeParcelle>1)
+      {
+        HumiditeParcelle=1;
+      }
+    }
+    public void InfluenceSolei(Mois moisActuel)
+    {
+      // on initialise l'ensoleillement de la parcelle 
+      EnsoleillementParcelle= moisActuel.Ensoleillement;
+      //l'ensoleillement asseche la parcelle et reduit l'humidité de la parcelle
+      HumiditeParcelle-=HumiditeParcelle*moisActuel.Ensoleillement; // si il y a beaucoup de solei et que la parcelle est très humide ca évaporera le plus 
+      if (HumiditeParcelle<0)
+      {
+        HumiditeParcelle=0;
+      }
+    }
+
     public void Arroser()
     {
       //MODIFIER LA VALEUR DE L'HUMIDITE DU TERRAIN
@@ -125,7 +146,7 @@ public class Parcelle
         else robustesse = false;
       }while(robustesse == false);
     }
-    public void Ombrager()
+    public void Ombrager() 
     {
       //MODIFIER LA VALEUR DE L'ENSOLEILLEMENT DU TERRAIN
       bool robustesse = true;
@@ -137,7 +158,11 @@ public class Parcelle
         robustesse = (input == "o" || input == "n"); //Renvoie false si la valeur saisie n'est pas o ou n.
         if (robustesse == true && input == "o") //Va modifier la valeur de l'ensoleillement si la valeur entrée est o ou n.
         {
-          EnsoleillementParcelle -= 0.3;
+          EnsoleillementParcelle -= 0.1; //au vue des valeurs de ensoleillement des mois c'est mieux que -0.3 mais on équilibrera
+          if (EnsoleillementParcelle<0)
+          {
+            EnsoleillementParcelle=0;
+          }
         }
         else robustesse = false;
       }while(robustesse == false);
