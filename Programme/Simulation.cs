@@ -152,7 +152,7 @@ public class Simulation
                                     ArgentJoueur -= 5;
                                     break;
                                 case 5:
-                                    TerrainSimulation.Parcelles[parcelle-1].Planter(TerrainSimulation.Parcelles[parcelle-1]);
+                                    TerrainSimulation.Parcelles[parcelle-1].Planter(TerrainSimulation.Parcelles[parcelle-1], parcelle);
                                     ArgentJoueur -= 1; //Voir si on change le prix en fonction de la plante
                                     break;
                                 case 6:
