@@ -7,7 +7,6 @@ public class PlanteNull: Plante
         ImagesPlante = new List<string> {"🟤"};
         NomPlante = "null";
         NombreProduits = 0;
-        SurfaceNecessaire = 1;
         //SaisonSemis = tt l'année
         BesoinHumidite = 0;
         BesoinLuminosite = 0;

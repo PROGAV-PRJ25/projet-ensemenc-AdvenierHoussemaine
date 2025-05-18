@@ -22,7 +22,7 @@ public abstract class Terrain
         for (int i=0; i<6; i++)
         {
             //Lorsque l'on initalise un terrain, il est fait d'emplacements vides '🟤'.
-            String [] charInitiaux = new string[] {"🟤 ", "🟤 ","🟤 ", "🟤 ", "🟤 ", "🟤 ", "🟤 ", "🟤 ","🟤 ", "🟤 ", "🟤 ", "🟤 "};
+            String [] charInitiaux = new string[] {" 🟤 ", " 🟤 "," 🟤 ", " 🟤 ", " 🟤 ", " 🟤 ", " 🟤 ", " 🟤 "," 🟤 ", " 🟤 ", " 🟤 ", " 🟤 "};
             Parcelle parcelle = new Parcelle(i+1, charInitiaux);
             PlanteNull Plantenull = new PlanteNull(parcelle);
             parcelle.Plantes.Add(Plantenull); //AJoute que des plantes nulles à l'initalisation.
@@ -38,7 +38,7 @@ public abstract class Terrain
     }
 
     //AFFICHAGE MODE CLASSIQUE
-    public void ToClassiqueString() //Si ca fonctionne pas, faire Console.Writeline(affichage)
+    public void ToClassiqueString()
     {   
         string affichageSousTerrain = " ";
         if (TerrainProtege == true)
@@ -58,6 +58,25 @@ public abstract class Terrain
         Console.WriteLine(affichage);
     }
 
+    public void ToActionString() 
+    {   
+        string affichageSousTerrain = " ";
+        if (TerrainProtege == true)
+        {
+            affichageSousTerrain += "\n                  🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱🧱";
+        }
+        foreach (var parcelle in Parcelles)
+        {
+            string elementsListe = " ";
+            foreach (var element in parcelle.Emplacements)
+            {
+                elementsListe += element;
+            }
+            affichageSousTerrain += $"\n    Parcelle {parcelle.NumParcelle} : {elementsListe}";
+        }
+        string affichage = $"\n {affichageSousTerrain}";
+        Console.WriteLine(affichage);
+    }
     //AFFICHAGE MODE URGENCE
     public void ToUrgenceString() 
     {   
@@ -89,7 +108,7 @@ public abstract class Terrain
             }
         }
         //Affiche le nom des parcelles
-        affichage += "\n     Parcelle 1        Parcelle 2        Parcelle 3";
+        affichage += "\n      Parcelle 1          Parcelle 2          Parcelle 3";
         //AFFICHAGE DES 3 PARCELLES SUIVANTES
         //Affiche la première ligne
         affichage += "\n";
@@ -112,7 +131,7 @@ public abstract class Terrain
             }
         }
         //Affiche le nom des parcelles
-        affichage += "\n     Parcelle 4        Parcelle 5        Parcelle 6";     
+        affichage += "\n      Parcelle 4          Parcelle 5          Parcelle 6";     
         Console.WriteLine(affichage);
     }
 }

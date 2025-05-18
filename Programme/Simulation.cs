@@ -58,17 +58,21 @@ public class Simulation
             Console.WriteLine(AnneeSimulation);
 
             //DETERMINATION DU MODE URGENCE OU NON
-            int risqueModeUrgence = rng.Next(1, 4); //Une chance sur 4 d'être en mode urgence.
+            int risqueModeUrgence = rng.Next(1, 8); //Une chance sur 4 d'être en mode urgence. Il y a deux modes urgence.
             
             //------MODE URGENCE------
             if (risqueModeUrgence == 1)
-            {    
-                TerrainSimulation.ToUrgenceString();  
+            {     
                 //choix de l'urgence et dire qu'on est en mode urgence ce mois ci 
                 Enfant enfant = new Enfant(TerrainSimulation);
                 enfant.Urgence();
                 //affichage du nom de l'urgence 
                 //boucle while l'urgence est pas réglé ou que le joueur à perdu 
+            }
+            else if(risqueModeUrgence == 2)
+            {
+                Feu feu = new Feu(TerrainSimulation);
+                feu.Urgence();
             }
 
             //-----MODE CLASSIQUE------
@@ -107,6 +111,7 @@ public class Simulation
                 */
                 
                 //ACTIONS DU JOUEUR
+                Console.Clear();
                 TerrainSimulation.ToClassiqueString(); 
                 Console.WriteLine("Vous allez pouvoir vous occuper de votre jardin.");
                 Console.WriteLine($"--> SOLDE : {ArgentJoueur}🔔");
@@ -145,62 +150,73 @@ public class Simulation
                                 string inputParcelle = Console.ReadLine()!;
                                 robustesseParcelle = int.TryParse(inputParcelle, out parcelle);
                                 if (parcelle < 7 && parcelle > 0) //Vérifier que la valeur entrée par le joueur est un enier compris entre 1 et 6.
-                                switch(action)
                                 {
-                                    case 1:
-                                        TerrainSimulation.Parcelles[parcelle-1].Arroser();
-                                        robustesseAction = false; //Le joueur peut faire autant d'action qu'il veut (en fonction de son argent).
-                                        robustesseParcelle = true;
-                                        ArgentJoueur -= 2;
-                                        TerrainSimulation.ToClassiqueString();
-                                        break;
-                                    case 2:
-                                        TerrainSimulation.Parcelles[parcelle-1].Desherber();
-                                        robustesseAction = false;;
-                                        robustesseParcelle = true;
-                                        ArgentJoueur -= 2;
-                                        TerrainSimulation.ToClassiqueString();
-                                        break;
-                                    case 3:
-                                        TerrainSimulation.Parcelles[parcelle-1].Ombrager();
-                                        robustesseAction = false;
-                                        robustesseParcelle = true;
-                                        ArgentJoueur -= 5;
-                                        TerrainSimulation.ToClassiqueString();
-                                        break;
-                                    case 4:
-                                        TerrainSimulation.Parcelles[parcelle-1].TraiterMaladie();
-                                        robustesseAction = false;
-                                        robustesseParcelle = true;
-                                        ArgentJoueur -= 5;
-                                        TerrainSimulation.ToClassiqueString();
-                                        break;
-                                    case 5:
-                                        foreach(var emplacement in TerrainSimulation.Parcelles[parcelle-1].Emplacements) //Parcours la liste pour trouver un emplacement "vide".
-                                        {
+                                    switch(action)
+                                    {
+                                        case 1:
+                                            TerrainSimulation.Parcelles[parcelle-1].Arroser();
+                                            robustesseAction = false; //Le joueur peut faire autant d'action qu'il veut (en fonction de son argent).
+                                            robustesseParcelle = true;
+                                            ArgentJoueur -= 2;
+                                            TerrainSimulation.ToActionString();
+                                            Console.WriteLine($"--> SOLDE : {ArgentJoueur}🔔");
+                                            break;
+                                        case 2:
+                                            TerrainSimulation.Parcelles[parcelle-1].Desherber();
+                                            robustesseAction = false;;
+                                            robustesseParcelle = true;
+                                            ArgentJoueur -= 2;
+                                            TerrainSimulation.ToActionString();
+                                            Console.WriteLine($"--> SOLDE : {ArgentJoueur}🔔");
+                                            break;
+                                        case 3:
+                                            TerrainSimulation.Parcelles[parcelle-1].Ombrager();
+                                            robustesseAction = false;
+                                            robustesseParcelle = true;
+                                            ArgentJoueur -= 5;
+                                            TerrainSimulation.ToActionString();
+                                            Console.WriteLine($"--> SOLDE : {ArgentJoueur}🔔");
+                                            break;
+                                        case 4:
+                                            TerrainSimulation.Parcelles[parcelle-1].TraiterMaladie();
+                                            robustesseAction = false;
+                                            robustesseParcelle = true;
+                                            ArgentJoueur -= 5;
+                                            TerrainSimulation.ToActionString();
+                                            Console.WriteLine($"--> SOLDE : {ArgentJoueur}🔔");
+                                            break;
+                                        case 5:
                                             int positionParcelle = 0;
-                                            if (emplacement == "🟤")
+                                            foreach(var emplacement in TerrainSimulation.Parcelles[parcelle-1].Emplacements) //Parcours la liste pour trouver un emplacement "vide".
                                             {
-                                                TerrainSimulation.Parcelles[parcelle-1].Planter(TerrainSimulation.Parcelles[parcelle-1], positionParcelle);
-                                                ArgentJoueur -= 1;
-                                                break;
+                                                if (emplacement == " 🟤 ")
+                                                {
+                                                    TerrainSimulation.Parcelles[parcelle-1].Planter(TerrainSimulation.Parcelles[parcelle-1], positionParcelle);
+                                                    Console.WriteLine($"{TerrainSimulation.Parcelles[parcelle-1].Emplacements[positionParcelle]}");
+                                                    Console.WriteLine($"{TerrainSimulation.Parcelles[parcelle-1].Plantes[positionParcelle]}");
+                                                    ArgentJoueur -= 1;
+                                                    break;
+                                                }
+                                                else positionParcelle++;
                                             }
-                                            positionParcelle++;
-                                        }
-                                        TerrainSimulation.ToClassiqueString();
-                                        break;
-                                    default:
-                                        Console.WriteLine("L'action que vous avez choisie n'existe pas.");
-                                        break;
+                                            TerrainSimulation.ToClassiqueString();
+                                            Console.WriteLine($"--> SOLDE : {ArgentJoueur}🔔");
+                                            robustesseAction = false;
+                                            break;
+                                        default:
+                                            Console.WriteLine("L'action que vous avez choisie n'existe pas.");
+                                            break;
+                                    }
                                 }
+                                else robustesseParcelle = false;
                             }while (robustesseParcelle == false); 
                         }
                     }
                     else if (action == 0) robustesseAction = true; //Sort de la boucle si le joueur ne veut pas/plus faire d'action.
+                    else robustesseAction = false;
                     //TerrainSimulation.ToClassiqueString(); 
                 }while (robustesseAction == false && ArgentJoueur >= 1);
             }
-            TerrainSimulation.ToClassiqueString(); 
             //Read key pour que le joueur fasse enter pour avancer dans le jeu.    
         }
     }

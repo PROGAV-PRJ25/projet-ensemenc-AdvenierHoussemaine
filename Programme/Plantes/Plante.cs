@@ -14,7 +14,6 @@ public abstract class Plante
     public double BesoinLuminosite {get; set;} //Compris entre 0 et 1.
     public double TemperaturePrefereeMin {get; protected set;}
     public double TemperaturePrefereeMax {get; protected set;}
-    public int SurfaceNecessaire {get; protected set;} //Détermine le nombre d'emplacement dans une parcelle qu'il lui faut pour grandir.
 
     //DONNEES INITIALES QUI CHANGENT AU COURS DE LA PARTIE
     public double VitesseCroissance {get; set;} //Symbolise l'état de la plante, compris entre -1 et 1 :  -1 = mort, 0 = pas de changement, entre 0.5 et 1 = double la taille lors d'un tour de jeu.
