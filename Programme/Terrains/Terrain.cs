@@ -12,31 +12,24 @@ public abstract class Terrain
 
     public Terrain()
     {
+        EnsoleillementTerrain = 0.5; //La valeur par défault au moment de l'initalisation.
         if (TypeTerrain == "Tourbière") {HumiditeTerrain = 1 ; AbsorbtionDeLeau = 0.1;}
         else if (TypeTerrain == "Argileux") {HumiditeTerrain = 0.4; AbsorbtionDeLeau = 0.3;}
         else if (TypeTerrain == "Sableux") {HumiditeTerrain = 0.7; AbsorbtionDeLeau = 0.5;}
         else if (TypeTerrain == "Rocheux") {HumiditeTerrain = 0.2; AbsorbtionDeLeau = 0.7;}
         //Lorsque l'on initalise un terrain, il est fait d'emplacements vides '🟤'.
-        List<string> charInitiaux = new List<string> {"🟤", "🟤","🟤", "🟤", "🟤", "🟤", "🟤", "🟤","🟤", "🟤", "🟤", "🟤"};
         Parcelles  = new List<Parcelle> {};
         for (int i=0; i<6; i++)
         {
             //Lorsque l'on initalise un terrain, il est fait d'emplacements vides '🟤'.
-            String [] charInitiaux = new string[] {"🟤", "🟤","🟤", "🟤", "🟤", "🟤", "🟤", "🟤","🟤", "🟤", "🟤", "🟤"};
+            String [] charInitiaux = new string[] {"🟤 ", "🟤 ","🟤 ", "🟤 ", "🟤 ", "🟤 ", "🟤 ", "🟤 ","🟤 ", "🟤 ", "🟤 ", "🟤 "};
             Parcelle parcelle = new Parcelle(i+1, charInitiaux);
+            PlanteNull Plantenull = new PlanteNull(parcelle);
+            parcelle.Plantes.Add(Plantenull); //AJoute que des plantes nulles à l'initalisation.
             parcelle.HumiditeParcelle = HumiditeTerrain;
             parcelle.EnsoleillementParcelle = EnsoleillementTerrain;
             Parcelles.Add(parcelle);
         }
-        foreach(var parcelle in Parcelles)
-        {
-            for(int i=0; i<6; i++)
-            {
-                PlanteNull Plantenull = new PlanteNull(parcelle);
-                parcelle.Plantes.Add(Plantenull); //AJoute que des plantes nulles à l'initalisation.
-            }
-        }
-        EnsoleillementTerrain = 0.5; //La valeur par défault au moment de l'initalisation.
     }
     
     public void Proteger()
@@ -61,7 +54,7 @@ public abstract class Terrain
             }
             affichageSousTerrain += $"\n    Parcelle {parcelle.NumParcelle} : {elementsListe}";
         }
-        string affichage = $"=== TERRAIN=== \n     -> Type : {TypeTerrain}\n     -> Humidité : {HumiditeTerrain} \n Voici le détail des parcelles : {affichageSousTerrain}";
+        string affichage = $"\n     -> Type : {TypeTerrain}\n     -> Humidité : {HumiditeTerrain} \n Voici le détail des parcelles : {affichageSousTerrain}";
         Console.WriteLine(affichage);
     }
 
@@ -96,7 +89,7 @@ public abstract class Terrain
             }
         }
         //Affiche le nom des parcelles
-        affichage += "\n   Parcelle 1      Parcelle 2      Parcelle 3";
+        affichage += "\n     Parcelle 1        Parcelle 2        Parcelle 3";
         //AFFICHAGE DES 3 PARCELLES SUIVANTES
         //Affiche la première ligne
         affichage += "\n";
@@ -119,7 +112,7 @@ public abstract class Terrain
             }
         }
         //Affiche le nom des parcelles
-        affichage += "\n   Parcelle 4      Parcelle 5      Parcelle 6";     
+        affichage += "\n     Parcelle 4        Parcelle 5        Parcelle 6";     
         Console.WriteLine(affichage);
     }
 }

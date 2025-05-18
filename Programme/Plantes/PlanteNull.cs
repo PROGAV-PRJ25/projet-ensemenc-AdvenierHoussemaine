@@ -3,6 +3,7 @@ public class PlanteNull: Plante
 {
     public PlanteNull(Parcelle parcellePlante) : base(parcellePlante)
     {
+        
         ImagesPlante = new List<string> {"🟤"};
         NomPlante = "null";
         NombreProduits = 0;

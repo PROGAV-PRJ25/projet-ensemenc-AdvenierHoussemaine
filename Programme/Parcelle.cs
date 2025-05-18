@@ -10,10 +10,13 @@ public class Parcelle
     public double HumiditeParcelle {get; set;} //Allant de 0(très sec) à 1(très humide)
     public double EnsoleillementParcelle {get; set;} //Allant de 0(ombragé) à 1(plein soleil)
     public List<Plante> Plantes {get; set;} //Repertorie les plantes dans la parcelle.
+    //public PlanteNull PlanteNull {get; set;}
     public Parcelle(int numPetitTerrain, string [] emplacements)
     {
+        Emplacements = new string [12];
         Emplacements = emplacements;
         NumParcelle = numPetitTerrain;
+        //PlanteNull = new PlanteNull(Parcele);
         Plantes = new List<Plante> (new PlanteNull[12]); //CHANGER ICI, CA INITIALISE PAS CORRECTEMENT! //On initialise avec 12 plantes null.
     }
 

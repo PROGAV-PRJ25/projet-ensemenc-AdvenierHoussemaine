@@ -1,3 +1,4 @@
+/*
 public class Escargot : Animaux 
 {
     
@@ -13,7 +14,7 @@ public class Escargot : Animaux
         {
             for (int i = 0 ; i<12 ; i++)
             {
-                if(TerrainAnimal.Parcelles[parcelleDepart].Emplacements[i][0]=="🍓")
+                if(TerrainAnimal.Parcelles[parcelleDepart].Emplacements[i] == "🍓")
             }
         }
         else
@@ -24,3 +25,5 @@ public class Escargot : Animaux
 }
 
 // si c'est humide il vient 
+
+*/
