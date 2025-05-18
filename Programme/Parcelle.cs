@@ -13,7 +13,7 @@ public class Parcelle
     {
         Emplacements = emplacements;
         NumParcelle = numPetitTerrain;
-        Plantes = new List<Plante> (new PlanteNull[12]); //On initialise avec 12 plantes null.
+        Plantes = new List<Plante> (new PlanteNull[12]); //CHANGER ICI, CA INITIALISE PAS CORRECTEMENT! //On initialise avec 12 plantes null.
     }
 
     public void Planter(Parcelle parcelle, int positionParcelle)
@@ -159,8 +159,9 @@ public class Parcelle
         if (emplacement == "🌱" || emplacement == "🍂") 
         {
           Emplacements[index] = "🟤";
-          index++;
+          //REMPLACER EMPLACEMENT PAR UNE PLANTE NULLE.
         }
+        index++;
       } 
     }
 
