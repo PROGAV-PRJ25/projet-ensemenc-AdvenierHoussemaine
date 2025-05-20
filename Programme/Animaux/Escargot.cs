@@ -1,7 +1,7 @@
-/*
+
 public class Escargot : Animaux 
 {
-    private bool terrainTropSec = false;
+    private bool parcelleTropSec = false;
 
     public Escargot (int parcelleDepart, int emplacementDepart, Terrain terrainAnimal) : base (parcelleDepart,emplacementDepart, terrainAnimal)
     {
@@ -16,19 +16,24 @@ public class Escargot : Animaux
             {
                 if(TerrainAnimal.Parcelles[parcelleDepart].Plantes[i].NatureCommercialisable==true)//l'escargot se situe sur une plante avec quelque chose à manger
                 {
-                    //soit attaque nombreProduit ou les images 
+                    //si la plante n'est pas morte l'escargot mange et fait diminuer le niveau de maturation
+                    if (TerrainAnimal.Parcelles[parcelleDepart].Plantes[i].Niveaumaturation>0)
+                    {
+                        TerrainAnimal.Parcelles[parcelleDepart].Plantes[i].Niveaumaturation--;
+                        Console.WriteLine($"Des escargots ont mangés les plantes dans la parcelle {parcelleDepart +1} à l'emplacement {i +1}")
+                    }
                 }
             }
         }
         else
         {
-            terrainTropSec = true;
-            Console.WriteLine("il fait trop sec pour que des escargots viennent nuire");
+            parcelleTropSec = true;
+            Console.WriteLine("Il fait trop sec pour que des escargots viennent nuire");
         }
     }
     public override string ToString()
     {
-        if (terrainTropSec==false)
+        if (parcelleTropSec==false)
         {
             return $"Des escargots ont mangé ce qui était comestible dans la parcelle {ParcellePositionAnimal +1} avant de partir. \n Elle contiens maintenant : ";
     
@@ -40,6 +45,5 @@ public class Escargot : Animaux
     }
 }
 
-// si c'est humide il vient 
 
-*/
+
