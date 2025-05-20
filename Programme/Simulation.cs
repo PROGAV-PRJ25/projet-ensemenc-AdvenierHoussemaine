@@ -54,7 +54,26 @@ public class Simulation
     public void Simuler()
     {
         while (ConditionArret == false) //Les plantes sont mortes ou le joueur décide d'arreter de jouer (voir méthode CalculerConditionArret)
-        {   //AFFICHAGE DU MOIS ET DE LA METEO
+        {   
+            Mois moisPourMeteo = AnneeSimulation.DonnerLeMois();
+            //on vérifie l'état des plantes
+            foreach(Plante plante in TerrainSimulation.Parcelles)
+            {
+                if(plante.VerificationEtatPlante(moisPourMeteo)==-1) //si la plante n'a pas survecu on le signale
+                {
+                    plante.Niveaumaturation=0;
+                }
+                if(plante.Niveaumaturation<=3 || plante.VerificationEtatPlante(moisPourMeteo)>=0.8) //Si l'état est suffisament bon la plante gagne en maturité 
+                {
+                    plante.Niveaumaturation++;
+                }
+                if(plante.Niveaumaturation>=1 || plante.VerificationEtatPlante(moisPourMeteo)<=-0.8) //Si l'état est suffisament mauvais la plante perd en maturité 
+                {
+                    plante.Niveaumaturation--;
+                }
+
+            }
+            //AFFICHAGE DU MOIS ET DE LA METEO
             Console.WriteLine(AnneeSimulation);
 
             //DETERMINATION DU MODE URGENCE OU NON
@@ -216,8 +235,11 @@ public class Simulation
                     else robustesseAction = false;
                     //TerrainSimulation.ToClassiqueString(); 
                 }while (robustesseAction == false && ArgentJoueur >= 1);
+            
             }
-            //Read key pour que le joueur fasse enter pour avancer dans le jeu.    
+            //Read key pour que le joueur fasse enter pour avancer dans le jeu.
+            // On change de mois
+            AnneeActuel.ChangerDeMois();   
         }
     }
 }

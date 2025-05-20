@@ -18,6 +18,7 @@ public abstract class Plante
     //DONNEES INITIALES QUI CHANGENT AU COURS DE LA PARTIE
     public double VitesseCroissance {get; set;} //Symbolise l'état de la plante, compris entre -1 et 1 :  -1 = mort, 0 = pas de changement, entre 0.5 et 1 = double la taille lors d'un tour de jeu.
     public Parcelle? ParcellePlante {get; set;} //Indique sur quelle parcelle du terrain se situe la plante.
+    public int Niveaumaturation {get; set;} // Indique à quel niveau dans les emoticone la plante est, 0 pour morte 4 pour à son max
 
     //CONTRAINTES
     // vient on le fait que is on a le temps - public List<Maladies> MaladiesContractables {get; protected set;}

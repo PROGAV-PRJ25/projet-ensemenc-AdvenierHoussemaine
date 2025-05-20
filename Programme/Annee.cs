@@ -44,6 +44,12 @@ public class Annee {
         }
     }
 
+    public Mois DonnerLeMois()
+    {
+        Saison saison = AnneeActuel[SaisonActuel];
+        return saison.MoisDeLaSaison[MoisActuel];
+    }
+
     public override string ToString()
     {
         Saison saison = AnneeActuel[SaisonActuel];
