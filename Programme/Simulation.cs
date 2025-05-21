@@ -239,7 +239,7 @@ public class Simulation
             }
             //Read key pour que le joueur fasse enter pour avancer dans le jeu.
             // On change de mois
-            AnneeActuel.ChangerDeMois();   
+            AnneeSimulation.ChangerDeMois();   
         }
     }
 }
