@@ -5,70 +5,70 @@ public class Mois
     public double Temperature {get; set;} // en degres celsius 
     public double Ensoleillement {get; set;} // en taux 0==noir complet 1==jour sur le mois
     
-    public Mois (string nomDumois)
+    public Mois (string nomDuMois)
     {
-        NomDuMois = nomDumois ;
-        if (nomDumois=="Janvier")
+        NomDuMois = nomDuMois ;
+        if (nomDuMois=="Janvier")
         {
             Pluviometrie = 7.5;
             Temperature = 6.5;
             Ensoleillement =0.4 ;
         }
-        else if (nomDumois=="Février")
+        else if (nomDuMois=="Février")
         {
             Pluviometrie = 5.5;
             Temperature = 6.5;
             Ensoleillement = 0.5;
         }
-        else if (nomDumois=="Mars")
+        else if (nomDuMois=="Mars")
         {
             Pluviometrie = 5.5;
             Temperature = 9.7;
             Ensoleillement = 0.7;
         }
-        else if (nomDumois=="Avril")
+        else if (nomDuMois=="Avril")
         {
             Pluviometrie = 7.3;
             Temperature = 12.5;
             Ensoleillement = 0.8 ;
         }
-        else if (nomDumois=="Mai")
+        else if (nomDuMois=="Mai")
         {
             Pluviometrie = 7.6;
             Temperature = 16;
             Ensoleillement = 0.9;
         }
-        else if (nomDumois=="Juin")
+        else if (nomDuMois=="Juin")
         {
             Pluviometrie = 6.8;
             Temperature = 20;
             Ensoleillement = 0.9;
         }
-        else if (nomDumois=="Juillet")
+        else if (nomDuMois=="Juillet")
         {
             Pluviometrie = 5.3;
             Temperature = 21.5;
             Ensoleillement = 0.9;
         }
-        else if (nomDumois=="Août")
+        else if (nomDuMois=="Août")
         {
             Pluviometrie = 5.3;
             Temperature = 21.5;
             Ensoleillement = 0.9;
         }
-        else if (nomDumois=="Septembre")
+        else if (nomDuMois=="Septembre")
         {
             Pluviometrie = 6;
             Temperature = 19;
             Ensoleillement = 0.8;
         }
-        else if (nomDumois=="Octobre")
+        else if (nomDuMois=="Octobre")
         {
             Pluviometrie = 7.1;
             Temperature = 15;
             Ensoleillement = 0.7;
         }
-        else if (nomDumois=="Novembre")
+        else if (nomDuMois=="Novembre")
         {
             Pluviometrie = 8.6;
             Temperature = 10;
