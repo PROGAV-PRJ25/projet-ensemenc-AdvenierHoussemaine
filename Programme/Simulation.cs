@@ -130,8 +130,8 @@ public class Simulation
                     ver.Action();
                     //Console.WriteLine(TerrainSimulation)
                 }
-                */
                 
+                */
                 //ACTIONS DU JOUEUR
                 Console.Clear();
                 TerrainSimulation.ToClassiqueString(); 
