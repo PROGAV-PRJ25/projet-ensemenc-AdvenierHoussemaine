@@ -31,7 +31,7 @@ public abstract class Plante
         NiveauMaturation = 1; //La plante comment au niveau de graine
     }
 
-    public double VerificationEtatPlante(Mois moisActuel)
+    public virtual double VerificationEtatPlante(Mois moisActuel)
     { //Si retourne 0 la plante survit et grandit pas. Si elle retourne 1 elle est à sa croissance maximale. Si elle retourne -1 elle meurt et les nombre négatifs signifient une décroissance.
         //Verification pour savoir si elle est en etat de survivre.
         if (BesoinHumidite > ParcellePlante!.HumiditeParcelle || BesoinLuminosite > ParcellePlante!.EnsoleillementParcelle)
