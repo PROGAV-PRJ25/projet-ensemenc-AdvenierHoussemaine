@@ -2,16 +2,16 @@ public class PlanteInvasive : Plante
 {
     public PlanteInvasive(Parcelle parcellePlante) : base(parcellePlante)
     {
-        ImagesPlante = new List<string> { "🌱" };
+        ImagesPlante = new List<string> { "🌱 " };
         NomPlante = "Weed";
         NombreProduits = 0;
         //SaisonSemis = tt l'année
-        BesoinHumidite = 0.5;
-        BesoinLuminosite = 0.5;
-        DureeDeMaturation = 1;
+        BesoinHumidite = 0;
+        BesoinLuminosite = 0;
+        DureeDeMaturation = 0;
         //MaladiesContractables = (....)
-        TemperaturePrefereeMin = 0;
-        TemperaturePrefereeMax = 30;
+        TemperaturePrefereeMin = -50;
+        TemperaturePrefereeMax = 50;
         NatureCommercialisable = false;
     }
 

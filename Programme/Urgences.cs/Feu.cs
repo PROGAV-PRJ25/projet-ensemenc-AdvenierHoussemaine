@@ -19,15 +19,14 @@ public class Feu
 
         while (proposition != nombreMystere)
         {
-            
+
             System.Threading.Thread.Sleep(5000);
             Console.Clear();
             Console.WriteLine("\n = URGENCE !!! =");
             Console.WriteLine("- Devinez un nombre entre 0 et 20 pour arrêter le jeu ! -");
             TerrainSimulation.ToUrgenceString();
-            NbrTours++;
-            TerrainSimulation.Parcelles[NbrTours/12].Emplacements[NbrTours] = " 🔥 ";
-            TerrainSimulation.Parcelles[NbrTours/12].Plantes[NbrTours] = PlanteNull;
+            TerrainSimulation.Parcelles[NbrTours / 12].Emplacements[NbrTours] = " 🔥 ";
+            TerrainSimulation.Parcelles[NbrTours / 12].Plantes[NbrTours] = PlanteNull;
             TerrainSimulation.ToUrgenceString();
 
             Console.Write("\n Votre proposition : ");
@@ -53,12 +52,13 @@ public class Feu
             {
                 Console.WriteLine($"\n Bravo Vous avez gagné ! Vous avez trouvé le nombre {nombreMystere} en {tentatives} tentative(s) !");
                 int indexEmplacement = 0;
-                foreach(var emplacement in TerrainSimulation.Parcelles[NbrTours/12].Emplacements)
+                foreach (var emplacement in TerrainSimulation.Parcelles[NbrTours / 12].Emplacements)
                 {
-                    if (emplacement == " 🔥 ") TerrainSimulation.Parcelles[NbrTours/12].Emplacements[indexEmplacement] = " 🟤 ";
+                    if (emplacement == " 🔥 ") TerrainSimulation.Parcelles[NbrTours / 12].Emplacements[indexEmplacement] = " 🟤 ";
                     indexEmplacement++;
                 }
             }
+            NbrTours++;
         }
     }
 
