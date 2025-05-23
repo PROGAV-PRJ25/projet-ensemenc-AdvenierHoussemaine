@@ -1,20 +1,20 @@
 using System.Net.Cache;
 
-public class Simulation 
+public class Simulation
 {
     private Random rng = new Random(); //est utilisé pour l'aléatoire
-    protected Annee AnneeSimulation;
-    public bool ConditionArret = false;
-    public int NbrTour { get; set; }
-    public int ArgentJoueur { get; set; }
-    public Terrain TerrainSimulation {get; set;}
-    public List<List<Plante>>? EnsemblePlantes {get; set;} //Utilisé pour répertorier toutes les plantes et avoir une vue d'ensemble sur le terrain.
-    public PlanteNull PlanteNull {get; set;} //Plante nulle utilisée pour remplacer des plantes.
+    private Annee anneeSimulation;
+    private bool conditionArret = false;
+    private int NbrTour { get; set; }
+    private int ArgentJoueur { get; set; }
+    private Terrain TerrainSimulation { get; set; }
+    public List<List<Plante>>? EnsemblePlantes { get; set; } //Utilisé pour répertorier toutes les plantes et avoir une vue d'ensemble sur le terrain.
+    private PlanteNull PlanteNull { get; set; } //Plante nulle utilisée pour remplacer des plantes.
     public Simulation(Terrain terrainJeu) //Prend en paramètre le type de terrain sur lequel le joueur veut jouer.
     {
         NbrTour = 1;
         ArgentJoueur = 20; //Argent pour débuter le jeu
-        AnneeSimulation = new Annee();
+        anneeSimulation = new Annee();
         TerrainSimulation = terrainJeu;
         //Ajouter des plantes nulles sur les parcelles
         foreach (var parcelle in TerrainSimulation.Parcelles)
@@ -32,23 +32,23 @@ public class Simulation
         }
         PlanteNull = new PlanteNull(TerrainSimulation.Parcelles[0]); //On initialise une plante null générique sur une parcelle aléatoire.
     }
-    public bool CalculerConditionArret()
+    public bool CalculerconditionArret()
     {
         //On veut voir si 3/4 ou plus des 3/4 des plantes sont à une vitesse de croissance de -0,5 ou plus ou si la moitié des plantes sont mortes(CONDITION : si on a 10 plantes ou plus).
         int nombreDePlantes = EnsemblePlantes!.Sum(liste => liste.Count);
         int compteurPlantesFaibles = 0; //Voir combien de plantes ont une vitesse de croissance à moins de -0.2
         int compteurPlantesMortes = 0; //Voir combien de plantes ont une vitesse de croissance à -1.
-        foreach(var listePlante in EnsemblePlantes!)
+        foreach (var listePlante in EnsemblePlantes!)
         {
-            foreach(var plante in listePlante)
+            foreach (var plante in listePlante)
             {
                 if (plante.VitesseCroissance <= -0.5) compteurPlantesFaibles++;
                 if (plante.VitesseCroissance == -1) compteurPlantesMortes++;
             }
         }
-        if(compteurPlantesFaibles >= 0.75*nombreDePlantes) ConditionArret = true;
-        if (nombreDePlantes >= 10 && compteurPlantesMortes >= 0.5 * nombreDePlantes) ConditionArret = true;
-        if (ArgentJoueur == -5) ConditionArret = true;
+        if (compteurPlantesFaibles >= 0.75 * nombreDePlantes) conditionArret = true;
+        if (nombreDePlantes >= 10 && compteurPlantesMortes >= 0.5 * nombreDePlantes) conditionArret = true;
+        if (ArgentJoueur == -5) conditionArret = true;
 
         //On veut mettre la condition à true si le joueur décide d'arrêter de jouer.
         bool robustesse = false;
@@ -59,18 +59,18 @@ public class Simulation
             robustesse = (input == "o" || input == "n"); //Renvoie false si la valeur saisie n'est pas o ou n.
             if (robustesse == true && input == "n") //Va modifier la valeur de la condition d'arrêt à true si le joueur ne veut plus jouer. 
             {
-                ConditionArret = true;
+                conditionArret = true;
             }
             else robustesse = false;
-        }while(robustesse == false);
-        return ConditionArret;
+        } while (robustesse == false);
+        return conditionArret;
     }
     public void Simuler()
     {
-        while (ConditionArret == false) //Les plantes sont mortes ou le joueur décide d'arreter de jouer (voir méthode CalculerConditionArret)
+        while (conditionArret == false) //Les plantes sont mortes ou le joueur décide d'arreter de jouer (voir méthode CalculerconditionArret)
         {
 
-            Mois moisPourMeteo = AnneeSimulation.DonnerLeMois();
+            Mois moisPourMeteo = anneeSimulation.DonnerLeMois();
             //Apparition des plantes invasives : tous les 5 tours, elles se mettent là partout ou il y a des l'espace libre.
             if (NbrTour % 5 == 0)
             {
@@ -132,7 +132,7 @@ public class Simulation
             Console.WriteLine($"========== TOUR N°{NbrTour} ==========\n\n");
             System.Threading.Thread.Sleep(1500);
             //AFFICHAGE DU MOIS ET DE LA METEO
-            Console.WriteLine(AnneeSimulation);
+            Console.WriteLine(anneeSimulation);
             System.Threading.Thread.Sleep(1500);
             //INFLUENCE DE LA METEO SUR LES PARCELLES
             foreach (var parcelle in TerrainSimulation.Parcelles)
@@ -305,9 +305,9 @@ public class Simulation
             }
             //Read key pour que le joueur fasse enter pour avancer dans le jeu.
             // On change de mois
-            AnneeSimulation.ChangerDeMois();
+            anneeSimulation.ChangerDeMois();
             NbrTour++;
-            CalculerConditionArret(); //Demander au joueur s'il veut continuer à jouer.
+            CalculerconditionArret(); //Demander au joueur s'il veut continuer à jouer.
         }
     }
 }
