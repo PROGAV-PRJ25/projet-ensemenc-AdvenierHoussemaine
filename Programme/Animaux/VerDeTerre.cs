@@ -9,7 +9,7 @@ public class VerDeTerre : Animaux
 
     public override void Action(int parcelleDepart) //les ver de terre augmentent l'humidité de la parcelle 
     {
-        Console.WriteLine("\n~~~ 🪱 ~~~");
+        Console.WriteLine("\n~~~ 🪱  ~~~");
         if (TerrainAnimal.Parcelles[parcelleDepart].AbsorbtionDeLeau <= 0.9)
         {
             TerrainAnimal.Parcelles[parcelleDepart].AbsorbtionDeLeau += 0.1;

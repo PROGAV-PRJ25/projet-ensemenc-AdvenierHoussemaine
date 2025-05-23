@@ -13,7 +13,7 @@ public class Simulation
     public Simulation(Terrain terrainJeu) //Prend en paramètre le type de terrain sur lequel le joueur veut jouer.
     {
         NbrTour = 1;
-        ArgentJoueur = 15; //Argent pour débuter le jeu
+        ArgentJoueur = 20; //Argent pour débuter le jeu
         AnneeSimulation = new Annee();
         TerrainSimulation = terrainJeu;
         //Ajouter des plantes nulles sur les parcelles
@@ -36,7 +36,7 @@ public class Simulation
     {
         //On veut voir si 3/4 ou plus des 3/4 des plantes sont à une vitesse de croissance de -0,5 ou plus ou si la moitié des plantes sont mortes(CONTITION : si on a 10 plantes ou plus).
         int nombreDePlantes = EnsemblePlantes!.Sum(liste => liste.Count);
-        int compteurPlantesFaibles = 0; //Voir combien de plantes ont une vitesse de croissance à moins de -0.5
+        int compteurPlantesFaibles = 0; //Voir combien de plantes ont une vitesse de croissance à moins de -0.2
         int compteurPlantesMortes = 0; //Voir combien de plantes ont une vitesse de croissance à -1.
         foreach(var listePlante in EnsemblePlantes!)
         {
@@ -48,6 +48,7 @@ public class Simulation
         }
         if(compteurPlantesFaibles >= 0.75*nombreDePlantes) ConditionArret = true;
         if (nombreDePlantes >= 10 && compteurPlantesMortes >= 0.5 * nombreDePlantes) ConditionArret = true;
+        if (ArgentJoueur == -5) ConditionArret = true;
 
         //On veut mettre la condition à true si le joueur décide d'arrêter de jouer.
         bool robustesse = false;
@@ -69,8 +70,8 @@ public class Simulation
         while (ConditionArret == false) //Les plantes sont mortes ou le joueur décide d'arreter de jouer (voir méthode CalculerConditionArret)
         {
             Mois moisPourMeteo = AnneeSimulation.DonnerLeMois();
-            //Apparition des plantes invasives : tous les 3 tours, elles se mettent là partout ou il y a des l'espace libre.
-            if (NbrTour % 3 == 0)
+            //Apparition des plantes invasives : tous les 5 tours, elles se mettent là partout ou il y a des l'espace libre.
+            if (NbrTour % 5 == 0)
             {
                 int indiceParcelle = 0;
                 foreach (var parcelle in TerrainSimulation.Parcelles)
@@ -95,29 +96,31 @@ public class Simulation
                 foreach (var plante in parcelle.Plantes)
                 {
                     int indexPlante = 0;
-                    if (!(plante is PlanteNull) && plante.ImagesPlante![0] !=  " 🌱 ")
+                    if (!(plante is PlanteNull) && !(plante is PlanteInvasive))
                     {
+                        //Par défaut, les plante s'agrandissent à chaque tour.
+                        plante.NiveauMaturation++;
+                        TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = plante.ImagesPlante![plante.NiveauMaturation];
                         if (plante.VerificationEtatPlante(moisPourMeteo) == -1) //si la plante n'a pas surveccu on le signale
                         {
                             plante.NiveauMaturation = 0;
                             TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = plante.ImagesPlante![0];
                         }
-                        if (plante.NiveauMaturation < 4 || plante.VerificationEtatPlante(moisPourMeteo) >= 0.8) //Si l'état est suffisament bon la plante gagne en maturité 
-                        {
-                            plante.NiveauMaturation++;
-                            TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = plante.ImagesPlante![plante.NiveauMaturation];
-                        }
                         if (plante.NiveauMaturation == 4)
                         {
+                            Console.WriteLine("\n -> Des plantes ont été ceuillies !");
                             TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = " 🟤 ";
                             TerrainSimulation.Parcelles[indexParcelle].Plantes[indexPlante] = PlanteNull;
                             ArgentJoueur += TerrainSimulation.Parcelles[indexParcelle].Plantes[indexPlante].ValeurProduit * TerrainSimulation.Parcelles[indexParcelle].Plantes[indexPlante].ValeurProduit; //Ajouter de l'argent au joueur quand la plante est mure.
                         }
-                        if (plante.NiveauMaturation >= 1 || plante.VerificationEtatPlante(moisPourMeteo) <= -0.8) //Si l'état est suffisament mauvais la plante perd en maturité 
-                            {
-                                plante.NiveauMaturation--;
-                                TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = plante.ImagesPlante![plante.NiveauMaturation];
-                            }
+                        if (plante.NiveauMaturation >= 1 && plante.VerificationEtatPlante(moisPourMeteo) < -0.8) //Si l'état est suffisament mauvais la plante perd en maturité 
+                        {
+                            plante.NiveauMaturation--;
+                            TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = plante.ImagesPlante![plante.NiveauMaturation];
+                        }
+                        Console.WriteLine($"{plante.NiveauMaturation}");
+                        System.Threading.Thread.Sleep(2000);
+
                     }
                     indexPlante++;
                 }
@@ -138,7 +141,7 @@ public class Simulation
                 //Console.WriteLine(parcelle.ToString());
             }
             //DETERMINATION DU MODE URGENCE OU NON
-            int risqueModeUrgence = rng.Next(1, 8); //Une chance sur 4 d'être en mode urgence. Il y a deux modes urgence.
+            int risqueModeUrgence = rng.Next(1, 12); //Une chance sur 6 d'être en mode urgence. Il y a deux modes urgence.
 
             //------MODE URGENCE------
             if (risqueModeUrgence == 1)
@@ -157,7 +160,7 @@ public class Simulation
             //-----MODE CLASSIQUE------
             else
             {
-                Console.WriteLine("\n\n->Attention ! des animaux arrivent dans votre potager !");
+                Console.WriteLine("\n\n->Attention ! Des animaux arrivent dans votre potager !");
                 System.Threading.Thread.Sleep(1500);
                 //Variable aléatoire du choix de l'animal
                 int animal = rng.Next(0, 4);

@@ -20,7 +20,9 @@ public class Escargot : Animaux
                     //si la plante n'est pas morte l'escargot mange et fait diminuer le niveau de maturation
                     if (TerrainAnimal.Parcelles[parcelleDepart].Plantes[i].NiveauMaturation > 0)
                     {
-                        TerrainAnimal.Parcelles[parcelleDepart].Plantes[i].NiveauMaturation--;
+                        PlanteNull PlanteNull = new PlanteNull(TerrainAnimal.Parcelles[0]);
+                        TerrainAnimal.Parcelles[parcelleDepart].Emplacements[i] = " 🟤 ";
+                        TerrainAnimal.Parcelles[parcelleDepart].Plantes[i] = PlanteNull;
                         Console.WriteLine($"Des escargots ont mangés les plantes dans la parcelle {parcelleDepart + 1} à l'emplacement {i + 1}");
                     }
                 }

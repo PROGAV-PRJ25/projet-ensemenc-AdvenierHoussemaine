@@ -9,12 +9,13 @@ public class Abeille : Animaux
     {
         Console.WriteLine("\n~~~ 🐝 ~~~");
         for (int i = 0; i < 12; i++)
-        {
+        {   
             Plante planteAvecAbeille = TerrainAnimal.Parcelles[parcelleDepart].Plantes[i];
             //verifier que ce n'est pas la plante null
             if (planteAvecAbeille.NomPlante != "null" || planteAvecAbeille.VitesseCroissance <= 0.9)
             {
                 planteAvecAbeille.NiveauMaturation += 1;
+                TerrainAnimal.Parcelles[parcelleDepart].Emplacements[i] = planteAvecAbeille.ImagesPlante![planteAvecAbeille.NiveauMaturation];
             }
             //jouer sur ces la maturation , possible de complexifier avec la polenisation 
         }

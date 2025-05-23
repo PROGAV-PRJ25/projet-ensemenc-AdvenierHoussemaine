@@ -62,6 +62,7 @@ public class Enfant
                 nbrDefaites++;
                 if (choixJoueur == choixOrdi) Console.WriteLine("Egalité, rejouez !");
                 else Console.WriteLine("Egalité ou l'enfant a gagné, rejouez !");
+                System.Threading.Thread.Sleep(1500);
             }
         }while(rejouer == true);
         return rejouer;
