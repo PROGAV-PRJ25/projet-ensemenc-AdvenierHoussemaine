@@ -1,9 +1,9 @@
 
 public class Feu
 {
-    public PlanteNull PlanteNull {get; set;}
-    public Terrain TerrainSimulation {get; set;}
-    public int NbrTours = 0;
+    public PlanteNull PlanteNull { get; set; }
+    public Terrain TerrainSimulation { get; set; }
+    public int nbrTours = 0;
     public Feu(Terrain terrainSimulation)
     {
         TerrainSimulation = terrainSimulation;
@@ -16,7 +16,7 @@ public class Feu
         int nombreMystere = rand.Next(0, 21);
         int proposition = -1;
         int tentatives = 0;
-        
+
         TerrainSimulation.Parcelles[0].Emplacements[0] = " 🔥 ";
         TerrainSimulation.Parcelles[0].Plantes[0] = PlanteNull;
         TerrainSimulation.ToUrgenceString();
@@ -44,28 +44,28 @@ public class Feu
             if (proposition < nombreMystere)
             {
                 Console.WriteLine("Trop petit !");
-                TerrainSimulation.Parcelles[(NbrTours / 12)].Emplacements[NbrTours] = " 🔥 ";
-                TerrainSimulation.Parcelles[(NbrTours / 12)].Plantes[NbrTours] = PlanteNull;
+                TerrainSimulation.Parcelles[(nbrTours / 12)].Emplacements[nbrTours] = " 🔥 ";
+                TerrainSimulation.Parcelles[(nbrTours / 12)].Plantes[nbrTours] = PlanteNull;
             }
             else if (proposition > nombreMystere)
             {
                 Console.WriteLine("Trop grand !");
-                TerrainSimulation.Parcelles[(NbrTours / 12)].Emplacements[NbrTours] = " 🔥 ";
-                TerrainSimulation.Parcelles[(NbrTours / 12)].Plantes[NbrTours] = PlanteNull;
+                TerrainSimulation.Parcelles[(nbrTours / 12)].Emplacements[nbrTours] = " 🔥 ";
+                TerrainSimulation.Parcelles[(nbrTours / 12)].Plantes[nbrTours] = PlanteNull;
             }
             else
             {
                 Console.WriteLine($"\n => Bravo Vous avez gagné ! Vous avez trouvé le nombre {nombreMystere} ! Vous avez éteint le feu !");
                 int indexEmplacement = 0;
-                foreach (var emplacement in TerrainSimulation.Parcelles[NbrTours / 12].Emplacements)
+                foreach (var emplacement in TerrainSimulation.Parcelles[nbrTours / 12].Emplacements)
                 {
-                    if (emplacement == " 🔥 ") TerrainSimulation.Parcelles[NbrTours / 12].Emplacements[indexEmplacement] = " 🟤 ";
+                    if (emplacement == " 🔥 ") TerrainSimulation.Parcelles[nbrTours / 12].Emplacements[indexEmplacement] = " 🟤 ";
                     indexEmplacement++;
                 }
                 System.Threading.Thread.Sleep(3000);
                 TerrainSimulation.ToClassiqueString();
             }
-            NbrTours++;
+            nbrTours++;
         }
     }
 
