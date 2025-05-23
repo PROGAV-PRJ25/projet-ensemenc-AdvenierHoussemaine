@@ -151,49 +151,32 @@ public class Parcelle
   public void Ombrager()
   {
     //MODIFIER LA VALEUR DE L'ENSOLEILLEMENT DU TERRAIN
-    bool robustesse = true;
-    do
+
+    Console.WriteLine("Vous avez choisi d'ombrager votre terrain.");
+    EnsoleillementParcelle -= 0.1; //au vue des valeurs de ensoleillement des mois c'est mieux que -0.3 mais on équilibrera
+    if (EnsoleillementParcelle < 0)
     {
-      Console.WriteLine("Vous avez choisi d'omrager votre terrain.");
-      Console.WriteLine("Voulez-vous ombrager votre terrain ? Tappez o ou n.");
-      string input = Console.ReadLine()!;
-      robustesse = (input == "o" || input == "n"); //Renvoie false si la valeur saisie n'est pas o ou n.
-      if (robustesse == true && input == "o") //Va modifier la valeur de l'ensoleillement si la valeur entrée est o ou n.
-      {
-        EnsoleillementParcelle -= 0.1; //au vue des valeurs de ensoleillement des mois c'est mieux que -0.3 mais on équilibrera
-        if (EnsoleillementParcelle < 0)
-        {
-          EnsoleillementParcelle = 0;
-        }
-      }
-      else robustesse = false;
-    } while (robustesse == false);
-  }
-  public void TraiterMaladie()
-  {
-    Console.WriteLine("Vous avez choisi de traiter les plantes de votre terrain.");
-    //EN CAS DE MALADIE, ENLEVE LES DOMMAGES CAUSEES A LA PLANTE.
-    foreach (var plante in Plantes)
-    {
-      plante.VitesseCroissance += 0.4; //Une maladie inflige un dégat de 0.5 à la plante, la traiter permet de récupérer 0.1 points de croissance.
+      EnsoleillementParcelle = 0;
     }
+
+
   }
+
   public void Desherber()
   {
     int index = 0; //On veut récupérer l'indice des itérations emplacement.
     foreach (var emplacement in Emplacements)
     {
-      if (emplacement == "🌱" || emplacement == "🍂")
+      if (emplacement == " 🌱 " || emplacement == " 🍂 ")
       {
-        Emplacements[index] = "🟤";
-        //REMPLACER EMPLACEMENT PAR UNE PLANTE NULLE.
+        Emplacements[index] = " 🟤 ";
       }
       index++;
     }
   }
 
-    public override string ToString()
-    {
-        return $"La parcelle {NumParcelle} a un taux d'humidité de {HumiditeParcelle} et un taux d'ensoleillement de {EnsoleillementParcelle}";
-    }
+  public override string ToString()
+  {
+    return $"La parcelle {NumParcelle} a un taux d'humidité de {HumiditeParcelle} et un taux d'ensoleillement de {EnsoleillementParcelle}";
+  }
 }

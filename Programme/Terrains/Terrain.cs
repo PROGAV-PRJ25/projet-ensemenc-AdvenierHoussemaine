@@ -54,7 +54,7 @@ public abstract class Terrain
             }
             affichageSousTerrain += $"\n    Parcelle {parcelle.NumParcelle} : {elementsListe}";
         }
-        string affichage = $"\n     -> Type : {TypeTerrain}\n     -> Humidité : {HumiditeTerrain} \n Voici le détail des parcelles : {affichageSousTerrain}";
+        string affichage = $"\n\n    -> Type : {TypeTerrain}\n\n     -> Humidité : {HumiditeTerrain} \n\n Voici le détail des parcelles : {affichageSousTerrain}";
         Console.WriteLine(affichage);
     }
 
@@ -108,7 +108,7 @@ public abstract class Terrain
             }
         }
         //Affiche le nom des parcelles
-        affichage += "\n      Parcelle 1          Parcelle 2          Parcelle 3";
+        affichage += "\n         Parcelle 1            Parcelle 2            Parcelle 3";
         //AFFICHAGE DES 3 PARCELLES SUIVANTES
         //Affiche la première ligne
         affichage += "\n";
@@ -131,7 +131,7 @@ public abstract class Terrain
             }
         }
         //Affiche le nom des parcelles
-        affichage += "\n      Parcelle 4          Parcelle 5          Parcelle 6";     
+        affichage += "\n       Parcelle 4            Parcelle 5            Parcelle 6";     
         Console.WriteLine(affichage);
     }
 }

@@ -55,19 +55,6 @@ public abstract class Plante
             }
            
         }
-        //ce seront les maladies qui affectent la plante
-        
-        /*
-        //si il n'y a pas beaucoup de place la croissance est limité
-        if (SurfaceNecessaire*(croissancePotentielle-1)<ParcellePlante.SurfaceNecessaire) //A régler....:/
-        {
-            return croissancePotentielle;
-        }
-        else
-        {
-            return 2; //permettra de signifier qu'il faudra occuper tout l'espace disponible
-        }
-        */
         return VitesseCroissance;
      }
 }

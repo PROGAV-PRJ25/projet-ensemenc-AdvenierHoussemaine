@@ -7,11 +7,15 @@ public class Sanglier : Animaux
 
     public override void Action(int parcelleDepart) //le sanglier piétine les plantes 
     {
-        //possible de faire que les nénuphare et les cactus le bloque
-        for (int i = 0; i < 12; i++)
+
+        for (int i = 0; i < 12; i+=2)
         {
-            TerrainAnimal.Parcelles[parcelleDepart].Plantes[i].VitesseCroissance = -1;
+            PlanteNull PlanteNull = new PlanteNull(TerrainAnimal.Parcelles[0]);
+            TerrainAnimal.Parcelles[parcelleDepart].Emplacements[i] = " 🟤 ";
+            TerrainAnimal.Parcelles[parcelleDepart].Plantes[i] = PlanteNull;
         }
+        Console.WriteLine($"\n=> Un sanglier c'est introduit pendant une nuit dans la parcelle {ParcellePositionAnimal + 1} . \n Il a pietiné la moitié des plantes présentes. ");
+        System.Threading.Thread.Sleep(1500);
     }
     
     public override string ToString()
