@@ -69,6 +69,7 @@ public class Simulation
     {
         while (ConditionArret == false) //Les plantes sont mortes ou le joueur décide d'arreter de jouer (voir méthode CalculerConditionArret)
         {
+
             Mois moisPourMeteo = AnneeSimulation.DonnerLeMois();
             //Apparition des plantes invasives : tous les 5 tours, elles se mettent là partout ou il y a des l'espace libre.
             if (NbrTour % 5 == 0)
@@ -87,20 +88,20 @@ public class Simulation
                     }
                     indiceParcelle++;
                 }
-                    
+
             }
             //on vérifie l'état des plantes
             int indexParcelle = 0; //Pour récuperer la position de la plante sur le terrain.
             foreach (var parcelle in TerrainSimulation.Parcelles)
             {
+                int indexPlante = 0;
                 foreach (var plante in parcelle.Plantes)
                 {
-                    int indexPlante = 0;
+                    //Par défaut, les plante s'agrandissent à chaque tour.
+                    plante.NiveauMaturation++;
+                    TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = plante.ImagesPlante![plante.NiveauMaturation];
                     if (!(plante is PlanteNull) && !(plante is PlanteInvasive))
                     {
-                        //Par défaut, les plante s'agrandissent à chaque tour.
-                        plante.NiveauMaturation++;
-                        TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = plante.ImagesPlante![plante.NiveauMaturation];
                         if (plante.VerificationEtatPlante(moisPourMeteo) == -1) //si la plante n'a pas surveccu on le signale
                         {
                             plante.NiveauMaturation = 0;
@@ -306,6 +307,7 @@ public class Simulation
             // On change de mois
             AnneeSimulation.ChangerDeMois();
             NbrTour++;
+            CalculerConditionArret(); //Demander au joueur s'il veut continuer à jouer.
         }
     }
 }
