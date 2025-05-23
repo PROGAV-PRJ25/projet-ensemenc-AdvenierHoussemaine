@@ -34,7 +34,7 @@ public abstract class Plante
     public virtual double VerificationEtatPlante(Mois moisActuel)
     { //Si retourne 0 la plante survit et grandit pas. Si elle retourne 1 elle est à sa croissance maximale. Si elle retourne -1 elle meurt et les nombre négatifs signifient une décroissance.
         //Verification pour savoir si elle est en etat de survivre.
-        if (BesoinHumidite > ParcellePlante!.HumiditeParcelle || BesoinLuminosite > ParcellePlante!.EnsoleillementParcelle)
+        if (BesoinHumidite > ParcellePlante!.HumiditeParcelle && BesoinLuminosite > ParcellePlante!.EnsoleillementParcelle)
         {
             return-1; //La plante meurt si ses besoins en ensoleillement et en humidité ne sont pas atteints.
         }
@@ -45,7 +45,7 @@ public abstract class Plante
         }
         if (moisActuel.Temperature>TemperaturePrefereeMax)
         {
-            if((moisActuel.Temperature/(2*TemperaturePrefereeMax))>=1) //Plus de deux fois la temperature max preferée resulte en la mort
+            if((moisActuel.Temperature/(4*TemperaturePrefereeMax))>=1) //Plus de quatre fois la temperature max preferée resulte en la mort
             {
                 return -1;
             }
