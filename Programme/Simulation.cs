@@ -34,7 +34,7 @@ public class Simulation
     }
     public bool CalculerConditionArret()
     {
-        //On veut voir si 3/4 ou plus des 3/4 des plantes sont à une vitesse de croissance de -0,5 ou plus ou si la moitié des plantes sont mortes(CONTITION : si on a 10 plantes ou plus).
+        //On veut voir si 3/4 ou plus des 3/4 des plantes sont à une vitesse de croissance de -0,5 ou plus ou si la moitié des plantes sont mortes(CONDITION : si on a 10 plantes ou plus).
         int nombreDePlantes = EnsemblePlantes!.Sum(liste => liste.Count);
         int compteurPlantesFaibles = 0; //Voir combien de plantes ont une vitesse de croissance à moins de -0.2
         int compteurPlantesMortes = 0; //Voir combien de plantes ont une vitesse de croissance à -1.

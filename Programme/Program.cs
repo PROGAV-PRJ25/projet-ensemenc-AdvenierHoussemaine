@@ -34,3 +34,6 @@ do
 }while(robustesse == false);
 Simulation jeu = new Simulation(terrainJeu);
 jeu.Simuler();
+
+
+

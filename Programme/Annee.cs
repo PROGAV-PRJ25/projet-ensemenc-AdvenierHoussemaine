@@ -1,60 +1,53 @@
 using System.Xml.Serialization;
 
 public class Annee {
-    public List<Saison> AnneeActuel {get; set;}
+    public List<Saison> AnneeActuel {get; private set;}
     //On commence en mars 2025
-    public static int NomDeLannee = 2025;
-    public static int SaisonActuel = 0;
-    public static int MoisActuel = 0;
+    public int NomDeLannee = 2025;
+    public int SaisonActuel = 1;//On commence en Mars
+    public int MoisActuel = 0;
 
     public Annee ()
     {
             AnneeActuel = new List<Saison>
         {
+            new ("Hiver"),
             new ("Printemps"),
             new ("Été"),
-            new ("Automne"),
-            new ("Hiver")
+            new ("Automne")
+            
         };
     }
 
-   public void ChangerDeMois()
+    public void ChangerDeMois()
     {
-        if(MoisActuel==0 || SaisonActuel==3) //on etait en decembre
+        if (MoisActuel == 0 && SaisonActuel == 0) //on a besoin de changer d'annee
         {
             NomDeLannee++;
-            MoisActuel++;
         }
-        else if (MoisActuel==2) // il y a changement de saison
+        if (MoisActuel == 2) // on a fini une saison
         {
-            MoisActuel=0;
-            if(SaisonActuel==3) //on etait en fevrier
+            MoisActuel = -1; //pour revenir sur 0 plus tard
+            if (SaisonActuel == 3) // on a fini l'annee
             {
-                SaisonActuel=0; //on arrive au printemps
-
+                SaisonActuel = -1;
             }
-            else
-            {
-                SaisonActuel++;
-            }
+            SaisonActuel++;
         }
-        else //il n'y a pas de changement d'année ou de saison
-        {
-            MoisActuel++;
-        }
+        MoisActuel++;
     }
+
 
     public Mois DonnerLeMois()
     {
-        Saison saison = AnneeActuel[SaisonActuel];
-        return saison.MoisDeLaSaison[MoisActuel];
+        return AnneeActuel[SaisonActuel].MoisDeLaSaison[MoisActuel];
     }
 
     public override string ToString()
     {
-        Saison saison = AnneeActuel[SaisonActuel];
-        Mois mois = saison.MoisDeLaSaison[MoisActuel];  
-        return $" ==> Nous sommes en {mois.NomDuMois} .\n  --> La météo est la suivante :\n        - Température moyenne : {mois.Temperature} °C\n        - Cm de pluie dans le mois : {mois.Pluviometrie} cm\n        - Taux de lumiére moyenne pendant une journée : {mois.Ensoleillement}";
+        
+        Mois mois = AnneeActuel[SaisonActuel].MoisDeLaSaison[MoisActuel];  
+        return $"{mois.NomDuMois} {NomDeLannee} \n  --> La météo est la suivante :\n        - Température moyenne : {mois.Temperature} °C\n        - Cm de pluie dans le mois : {mois.Pluviometrie} cm\n        - Taux de lumiére moyenne pendant une journée : {mois.Ensoleillement}";
     }
     //methode changer de mois 
     //eventuelement un to string permettant de faire un résumé de l'année
