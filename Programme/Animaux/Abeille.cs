@@ -7,6 +7,7 @@ public class Abeille : Animaux
 
     public override void Action(int parcelleDepart) //les abeilles augmentent la vitesse de croissance 
     {
+        Console.WriteLine("\n~~~ 🐝 ~~~");
         for (int i = 0; i < 12; i++)
         {
             Plante planteAvecAbeille = TerrainAnimal.Parcelles[parcelleDepart].Plantes[i];
@@ -14,9 +15,11 @@ public class Abeille : Animaux
             if (planteAvecAbeille.NomPlante != "null" || planteAvecAbeille.VitesseCroissance <= 0.9)
             {
                 planteAvecAbeille.NiveauMaturation += 1;
-            }  
+            }
             //jouer sur ces la maturation , possible de complexifier avec la polenisation 
         }
+        Console.WriteLine($"\n=> Des abeilles ont augmenté le bien être des plantes de la parcelle {ParcellePositionAnimal + 1}. \n Leur vitesse de croissance c'est vu augmenté ");
+        System.Threading.Thread.Sleep(1500);
     }
     
     public override string ToString()

@@ -169,24 +169,15 @@ public class Parcelle
       else robustesse = false;
     } while (robustesse == false);
   }
-  public void TraiterMaladie()
-  {
-    Console.WriteLine("Vous avez choisi de traiter les plantes de votre terrain.");
-    //EN CAS DE MALADIE, ENLEVE LES DOMMAGES CAUSEES A LA PLANTE.
-    foreach (var plante in Plantes)
-    {
-      plante.VitesseCroissance += 0.4; //Une maladie inflige un dégat de 0.5 à la plante, la traiter permet de récupérer 0.1 points de croissance.
-    }
-  }
+
   public void Desherber()
   {
     int index = 0; //On veut récupérer l'indice des itérations emplacement.
     foreach (var emplacement in Emplacements)
     {
-      if (emplacement == "🌱" || emplacement == "🍂")
+      if (emplacement == " 🌱 " || emplacement == " 🍂 ")
       {
-        Emplacements[index] = "🟤";
-        //REMPLACER EMPLACEMENT PAR UNE PLANTE NULLE.
+        Emplacements[index] = " 🟤 ";
       }
       index++;
     }

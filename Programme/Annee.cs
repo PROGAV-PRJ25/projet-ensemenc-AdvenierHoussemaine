@@ -54,7 +54,7 @@ public class Annee {
     {
         Saison saison = AnneeActuel[SaisonActuel];
         Mois mois = saison.MoisDeLaSaison[MoisActuel];  
-        return $"{mois.NomDuMois} \n  --> La météo est la suivante :\n        - Température moyenne : {mois.Temperature} °C\n        - Cm de pluie dans le mois : {mois.Pluviometrie} cm\n        - Taux de lumiére moyenne pendant une journée : {mois.Ensoleillement}";
+        return $" ==> Nous sommes en {mois.NomDuMois} .\n  --> La météo est la suivante :\n        - Température moyenne : {mois.Temperature} °C\n        - Cm de pluie dans le mois : {mois.Pluviometrie} cm\n        - Taux de lumiére moyenne pendant une journée : {mois.Ensoleillement}";
     }
     //methode changer de mois 
     //eventuelement un to string permettant de faire un résumé de l'année

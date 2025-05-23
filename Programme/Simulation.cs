@@ -5,19 +5,21 @@ public class Simulation
     private Random rng = new Random(); //est utilisé pour l'aléatoire
     protected Annee AnneeSimulation;
     public bool ConditionArret = false;
-    public int ArgentJoueur {get; set;}
+    public int NbrTour { get; set; }
+    public int ArgentJoueur { get; set; }
     public Terrain TerrainSimulation {get; set;}
     public List<List<Plante>>? EnsemblePlantes {get; set;} //Utilisé pour répertorier toutes les plantes et avoir une vue d'ensemble sur le terrain.
     public PlanteNull PlanteNull {get; set;} //Plante nulle utilisée pour remplacer des plantes.
     public Simulation(Terrain terrainJeu) //Prend en paramètre le type de terrain sur lequel le joueur veut jouer.
     {
+        NbrTour = 1;
         ArgentJoueur = 15; //Argent pour débuter le jeu
         AnneeSimulation = new Annee();
         TerrainSimulation = terrainJeu;
         //Ajouter des plantes nulles sur les parcelles
         foreach (var parcelle in TerrainSimulation.Parcelles)
         {
-            for (int i = 0; i < 11; i++)
+            for (int i = 0; i < 12; i++)
             {
                 PlanteNull PlanteNullParcelles = new PlanteNull(TerrainSimulation.Parcelles[0]);
                 parcelle.Plantes.Add(PlanteNullParcelles);
@@ -64,7 +66,6 @@ public class Simulation
     }
     public void Simuler()
     {
-        int NbrTour = 1;
         while (ConditionArret == false) //Les plantes sont mortes ou le joueur décide d'arreter de jouer (voir méthode CalculerConditionArret)
         {
             Mois moisPourMeteo = AnneeSimulation.DonnerLeMois();
@@ -81,7 +82,9 @@ public class Simulation
                         {
                             TerrainSimulation.Parcelles[indiceParcelle].Emplacements[indexEmplacement] = " 🌱 ";
                         }
+                        indexEmplacement++;
                     }
+                    indiceParcelle++;
                 }
                     
             }
@@ -120,17 +123,20 @@ public class Simulation
                 }
                 indexParcelle++;
             }
+            //AFFICHAGE NOUVEAU TOUR
+            Console.Clear();
+            Console.WriteLine($"========== TOUR N°{NbrTour} ==========\n\n");
+            System.Threading.Thread.Sleep(1500);
             //AFFICHAGE DU MOIS ET DE LA METEO
             Console.WriteLine(AnneeSimulation);
+            System.Threading.Thread.Sleep(1500);
             //INFLUENCE DE LA METEO SUR LES PARCELLES
             foreach (var parcelle in TerrainSimulation.Parcelles)
             {
                 parcelle.InfiltrationDeLaPluie(moisPourMeteo);
                 parcelle.InfluenceSolei(moisPourMeteo);
-                Console.WriteLine(parcelle.ToString());
+                //Console.WriteLine(parcelle.ToString());
             }
-            
-
             //DETERMINATION DU MODE URGENCE OU NON
             int risqueModeUrgence = rng.Next(1, 8); //Une chance sur 4 d'être en mode urgence. Il y a deux modes urgence.
 
@@ -140,8 +146,7 @@ public class Simulation
                 //choix de l'urgence et dire qu'on est en mode urgence ce mois ci 
                 Enfant enfant = new Enfant(TerrainSimulation);
                 enfant.Urgence();
-                //affichage du nom de l'urgence 
-                //boucle while l'urgence est pas réglé ou que le joueur à perdu 
+
             }
             else if (risqueModeUrgence == 2)
             {
@@ -152,6 +157,8 @@ public class Simulation
             //-----MODE CLASSIQUE------
             else
             {
+                Console.WriteLine("\n\n->Attention ! des animaux arrivent dans votre potager !");
+                System.Threading.Thread.Sleep(1500);
                 //Variable aléatoire du choix de l'animal
                 int animal = rng.Next(0, 4);
                 //Variable aléatoire du choix de la parcelle
@@ -180,11 +187,12 @@ public class Simulation
                     VerDeTerre ver = new VerDeTerre(numParcelle, TerrainSimulation);
                     ver.Action(numParcelle);
                 }
-                Console.WriteLine(TerrainSimulation);
+                TerrainSimulation.ToActionString();
+                System.Threading.Thread.Sleep(3000);
                 //ACTIONS DU JOUEUR
                 Console.Clear();
                 TerrainSimulation.ToClassiqueString();
-                Console.WriteLine("Vous allez pouvoir vous occuper de votre jardin.");
+                Console.WriteLine("\nVous allez pouvoir vous occuper de votre jardin.");
                 Console.WriteLine($"--> SOLDE : {ArgentJoueur}🔔");
                 bool robustesseAction = false;
                 bool robustesseParcelle = false;
@@ -192,12 +200,12 @@ public class Simulation
                 int parcelle;
                 do
                 {
-                    Console.WriteLine("Vous pouvez : \n 1) Arroser une parcelle : 2🔔 \n 2) Déserber une parcelle 2🔔 \n 3) Ombrager une parcelle 5🔔 \n 4) Traiter le sol de votre parcelle pour les soigner une maladie 5🔔 \n 5) Planter une plante 1🔔 \n 6) Installer un barrière 15🔔\n Tappez 1, 2, 3, 4, 5, 6 ou 0 (pour ne rien faire).");
+                    Console.WriteLine("\nVous pouvez : \n 1) Arroser une parcelle : 2🔔 \n 2) Déserber une parcelle 2🔔 \n 3) Ombrager une parcelle 5🔔 \n 4) Planter une plante 1🔔 \n 5) Installer un barrière 15🔔\n Tappez 1, 2, 3, 4, 5, 6 ou 0 (pour ne rien faire).");
                     string inputTerrain = Console.ReadLine()!;
                     robustesseAction = int.TryParse(inputTerrain, out action); //Renvoie false si la valeur saisie n'est pas un entier.
-                    if (action < 7 && action > 0) //Verifier que l'input du joueur est un entier compris entre 1 et 6.
+                    if (action < 6 && action > 0) //Verifier que l'input du joueur est un entier compris entre 1 et 5.
                     {
-                        if (action == 6)
+                        if (action == 5)
                         {
                             if (ArgentJoueur >= 15)
                             {
@@ -209,7 +217,7 @@ public class Simulation
                             }
                             else
                             {
-                                Console.WriteLine("Vous n'avez pas assez d'argent pour protéger votre terrain.");
+                                Console.WriteLine("\nVous n'avez pas assez d'argent pour protéger votre terrain.");
                                 break;
                             }
                         }
@@ -217,7 +225,7 @@ public class Simulation
                         {
                             do
                             {
-                                Console.WriteLine("Sur quelle parcelle voulez-vous agir ?");
+                                Console.WriteLine("\nSur quelle parcelle voulez-vous agir ?");
                                 string inputParcelle = Console.ReadLine()!;
                                 robustesseParcelle = int.TryParse(inputParcelle, out parcelle);
                                 if (parcelle < 7 && parcelle > 0) //Vérifier que la valeur entrée par le joueur est un enier compris entre 1 et 6.
@@ -230,15 +238,25 @@ public class Simulation
                                             robustesseParcelle = true;
                                             ArgentJoueur -= 2;
                                             TerrainSimulation.ToActionString();
-                                            Console.WriteLine($"--> SOLDE : {ArgentJoueur}🔔");
+                                            Console.WriteLine($"\n--> SOLDE : {ArgentJoueur}🔔");
                                             break;
                                         case 2:
                                             TerrainSimulation.Parcelles[parcelle - 1].Desherber();
+                                            int index = 0;
+                                            foreach (var parc in TerrainSimulation.Parcelles)
+                                            {
+                                                for (int i = 0; i < 12; i++)
+                                                {
+                                                    PlanteNull PlanteNullParcelles = new PlanteNull(TerrainSimulation.Parcelles[0]);
+                                                    TerrainSimulation.Parcelles[index].Plantes[i] = PlanteNullParcelles;
+                                                }
+                                                index++;
+                                            }
                                             robustesseAction = false; ;
                                             robustesseParcelle = true;
                                             ArgentJoueur -= 2;
                                             TerrainSimulation.ToActionString();
-                                            Console.WriteLine($"--> SOLDE : {ArgentJoueur}🔔");
+                                            Console.WriteLine($"\n--> SOLDE : {ArgentJoueur}🔔");
                                             break;
                                         case 3:
                                             TerrainSimulation.Parcelles[parcelle - 1].Ombrager();
@@ -246,17 +264,9 @@ public class Simulation
                                             robustesseParcelle = true;
                                             ArgentJoueur -= 5;
                                             TerrainSimulation.ToActionString();
-                                            Console.WriteLine($"--> SOLDE : {ArgentJoueur}🔔");
+                                            Console.WriteLine($"\n--> SOLDE : {ArgentJoueur}🔔");
                                             break;
                                         case 4:
-                                            TerrainSimulation.Parcelles[parcelle - 1].TraiterMaladie();
-                                            robustesseAction = false;
-                                            robustesseParcelle = true;
-                                            ArgentJoueur -= 5;
-                                            TerrainSimulation.ToActionString();
-                                            Console.WriteLine($"--> SOLDE : {ArgentJoueur}🔔");
-                                            break;
-                                        case 5:
                                             int positionParcelle = 0;
                                             foreach (var emplacement in TerrainSimulation.Parcelles[parcelle - 1].Emplacements) //Parcours la liste pour trouver un emplacement "vide".
                                             {
@@ -271,11 +281,11 @@ public class Simulation
                                                 else positionParcelle++;
                                             }
                                             TerrainSimulation.ToClassiqueString();
-                                            Console.WriteLine($"--> SOLDE : {ArgentJoueur}🔔");
+                                            Console.WriteLine($"\n--> SOLDE : {ArgentJoueur}🔔");
                                             robustesseAction = false;
                                             break;
                                         default:
-                                            Console.WriteLine("L'action que vous avez choisie n'existe pas.");
+                                            Console.WriteLine("\nL'action que vous avez choisie n'existe pas.");
                                             break;
                                     }
                                 }

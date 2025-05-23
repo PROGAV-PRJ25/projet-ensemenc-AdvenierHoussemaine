@@ -40,23 +40,25 @@ public class Enfant
             }
             string choixOrdi = options[random.Next(options.Length)];
             Console.WriteLine($"-> L'enfant à choisi : {choixOrdi}");
-            if(
+            if (
                 (choixJoueur == "pierre" && choixOrdi == "ciseaux") ||
                 (choixJoueur == "feuille" && choixOrdi == "pierre") ||
                 (choixJoueur == "ciseaux" && choixOrdi == "feuille")
             )
             {
-                Console.WriteLine("Vous avez gagné !");
+                Console.WriteLine("=> Vous avez gagné ! Vous avez chassé l'enfant !");
                 rejouer = false;
-                TerrainSimulation.Parcelles[NbrTours/12].Emplacements[nbrDefaites] = " 🟤 "; //Revenir sur un affichage normal.
+                TerrainSimulation.Parcelles[NbrTours / 12].Emplacements[nbrDefaites] = " 🟤 "; //Revenir sur un affichage normal.
+                System.Threading.Thread.Sleep(3000);
+                TerrainSimulation.ToClassiqueString();
             }
             else
             {
                 //Destruction des plantes par l'enfant
-                TerrainSimulation.Parcelles[(NbrTours/12)].Emplacements[nbrDefaites] = " 🟤 ";
-                TerrainSimulation.Parcelles[(NbrTours/12)].Emplacements[nbrDefaites+1] = " 👶 ";
-                TerrainSimulation.Parcelles[(NbrTours/12)].Plantes[nbrDefaites] = PlanteNull; //Détruire les plantes que l'enfant à piétiné.
-                TerrainSimulation.Parcelles[(NbrTours/12)].Plantes[nbrDefaites+1] = PlanteNull; //Détruire les plantes que l'enfant à piétiné.
+                TerrainSimulation.Parcelles[(NbrTours / 12)].Emplacements[nbrDefaites] = " 🟤 ";
+                TerrainSimulation.Parcelles[(NbrTours / 12)].Emplacements[nbrDefaites + 1] = " 👶 ";
+                TerrainSimulation.Parcelles[(NbrTours / 12)].Plantes[nbrDefaites] = PlanteNull; //Détruire les plantes que l'enfant à piétiné.
+                TerrainSimulation.Parcelles[(NbrTours / 12)].Plantes[nbrDefaites + 1] = PlanteNull; //Détruire les plantes que l'enfant à piétiné.
                 nbrDefaites++;
                 if (choixJoueur == choixOrdi) Console.WriteLine("Egalité, rejouez !");
                 else Console.WriteLine("Egalité ou l'enfant a gagné, rejouez !");
@@ -67,7 +69,7 @@ public class Enfant
     public Terrain Urgence()
     {
         Console.WriteLine("\n = URGENCE !!! UN ENFANT CAPRICIEUX JOUE DANS VOTRE POTAGER ET DETRUIT VOS PLANTES ! =");
-        System.Threading.Thread.Sleep(7000);
+        System.Threading.Thread.Sleep(5000);
         PierreFeuilleCiseaux();
         return TerrainSimulation;
     }

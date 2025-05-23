@@ -1,12 +1,12 @@
 ﻿//Créer une fonction annuaire des plante spour savoir ce dont elles ont besoin qui peut être appellé à tout moment.
 
-Console.WriteLine("----------- BIENVENUE DANS ENSCEMENCE ! ----------");
+Console.WriteLine("\n\n----------- BIENVENUE DANS ENSCEMENCE ! ----------");
 //Console.WriteLine(Les règles);
 bool robustesse = false;
 Terrain terrainJeu = null!;
 do
 {        
-    Console.WriteLine("Dans quel terrain voulez-vous jouer ? Sableux, Rocheux, Argileux ou Tourbière ?");
+    Console.WriteLine("\nDans quel terrain voulez-vous jouer ? Sableux, Rocheux, Argileux ou Tourbière ?");
     string input = Console.ReadLine()!.ToLower();
     switch (input)
     {
