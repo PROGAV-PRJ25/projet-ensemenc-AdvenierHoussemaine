@@ -1,9 +1,9 @@
 public class Mois 
 {
-    public string NomDuMois {get;set;}
-    public double Pluviometrie {get; set;} //pluviometrie en cm d'averse sur le mois
-    public double Temperature {get; set;} // en degres celsius 
-    public double Ensoleillement {get; set;} // en taux 0==noir complet 1==jour sur le mois
+    public string NomDuMois {get;private set;}
+    public double Pluviometrie {get; private set;} //pluviometrie en cm d'averse sur le mois
+    public double Temperature {get; private set;} // en degres celsius 
+    public double Ensoleillement {get; private set;} // en taux 0==noir complet 1==jour sur le mois
     
     public Mois (string nomDuMois)
     {

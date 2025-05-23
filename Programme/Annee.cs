@@ -4,8 +4,8 @@ public class Annee {
     public List<Saison> AnneeActuel {get; private set;}
     //On commence en mars 2025
     public int NomDeLannee = 2025;
-    public int SaisonActuel = 1;//On commence en Mars
-    public int MoisActuel = 0;
+    private int SaisonActuel = 1;//On commence en Mars
+    private int MoisActuel = 0;
 
     public Annee ()
     {

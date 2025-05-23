@@ -10,10 +10,10 @@ public abstract class Plante
     
     //PREFERENCES DE LA PLANTE
     public Saison? SaisonSemi {get; protected set;}
-    public double BesoinHumidite {get; set;} //Compris entre 0 et 1.
-    public double BesoinLuminosite {get; set;} //Compris entre 0 et 1.
-    public double TemperaturePrefereeMin {get; protected set;}
-    public double TemperaturePrefereeMax {get; protected set;}
+    protected double BesoinHumidite {get; set;} //Compris entre 0 et 1.
+    protected double BesoinLuminosite {get; set;} //Compris entre 0 et 1.
+    protected double TemperaturePrefereeMin {get; set;}
+    protected double TemperaturePrefereeMax {get; set;}
 
     //DONNEES INITIALES QUI CHANGENT AU COURS DE LA PARTIE
     public double VitesseCroissance {get; set;} //Symbolise l'état de la plante, compris entre -1 et 1 :  -1 = mort, 0 = pas de changement, entre 0.5 et 1 = double la taille lors d'un tour de jeu.
