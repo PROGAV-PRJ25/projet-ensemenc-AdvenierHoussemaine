@@ -21,7 +21,6 @@ public abstract class Plante
     public int NiveauMaturation {get; set;} // Indique à quel niveau dans les emoticone la plante est, 0 pour morte 4 pour à son max
 
     //CONTRAINTES
-    // vient on le fait que is on a le temps - public List<Maladies> MaladiesContractables {get; protected set;}
     public int DureeDeMaturation {get; set;} //En mois.
 
     public Plante(Parcelle parcellePlante)
