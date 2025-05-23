@@ -8,16 +8,27 @@ public class Simulation
     public int ArgentJoueur {get; set;}
     public Terrain TerrainSimulation {get; set;}
     public List<List<Plante>>? EnsemblePlantes {get; set;} //Utilisé pour répertorier toutes les plantes et avoir une vue d'ensemble sur le terrain.
+    public PlanteNull PlanteNull {get; set;} //Plante nulle utilisée pour remplacer des plantes.
     public Simulation(Terrain terrainJeu) //Prend en paramètre le type de terrain sur lequel le joueur veut jouer.
     {
-        ArgentJoueur = 20; //Argent pour débuter le jeu
+        ArgentJoueur = 15; //Argent pour débuter le jeu
         AnneeSimulation = new Annee();
         TerrainSimulation = terrainJeu;
-        EnsemblePlantes = new List<List<Plante>>{};
+        //Ajouter des plantes nulles sur les parcelles
         foreach (var parcelle in TerrainSimulation.Parcelles)
         {
-            EnsemblePlantes!.Add(parcelle.Plantes); 
+            for (int i = 0; i < 11; i++)
+            {
+                PlanteNull PlanteNullParcelles = new PlanteNull(TerrainSimulation.Parcelles[0]);
+                parcelle.Plantes.Add(PlanteNullParcelles);
+            }
         }
+        EnsemblePlantes = new List<List<Plante>> { };
+        foreach (var parcelle in TerrainSimulation.Parcelles)
+        {
+            EnsemblePlantes!.Add(parcelle.Plantes);
+        }
+        PlanteNull = new PlanteNull(TerrainSimulation.Parcelles[0]); //On initialise une plante null générique sur une parcelle aléatoire.
     }
     public bool CalculerConditionArret()
     {
@@ -53,7 +64,7 @@ public class Simulation
     }
     public void Simuler()
     {
-        int NbrTour = 0;
+        int NbrTour = 1;
         while (ConditionArret == false) //Les plantes sont mortes ou le joueur décide d'arreter de jouer (voir méthode CalculerConditionArret)
         {
             Mois moisPourMeteo = AnneeSimulation.DonnerLeMois();
@@ -81,23 +92,29 @@ public class Simulation
                 foreach (var plante in parcelle.Plantes)
                 {
                     int indexPlante = 0;
-                    if (plante != null)
+                    if (!(plante is PlanteNull) && plante.ImagesPlante![0] !=  " 🌱 ")
                     {
                         if (plante.VerificationEtatPlante(moisPourMeteo) == -1) //si la plante n'a pas surveccu on le signale
                         {
                             plante.NiveauMaturation = 0;
                             TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = plante.ImagesPlante![0];
                         }
-                        if (plante.NiveauMaturation <= 3 || plante.VerificationEtatPlante(moisPourMeteo) >= 0.8) //Si l'état est suffisament bon la plante gagne en maturité 
+                        if (plante.NiveauMaturation < 4 || plante.VerificationEtatPlante(moisPourMeteo) >= 0.8) //Si l'état est suffisament bon la plante gagne en maturité 
                         {
                             plante.NiveauMaturation++;
                             TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = plante.ImagesPlante![plante.NiveauMaturation];
                         }
-                        if (plante.NiveauMaturation >= 1 || plante.VerificationEtatPlante(moisPourMeteo) <= -0.8) //Si l'état est suffisament mauvais la plante perd en maturité 
+                        if (plante.NiveauMaturation == 4)
                         {
-                            plante.NiveauMaturation--;
-                            TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = plante.ImagesPlante![plante.NiveauMaturation];
+                            TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = " 🟤 ";
+                            TerrainSimulation.Parcelles[indexParcelle].Plantes[indexPlante] = PlanteNull;
+                            ArgentJoueur += TerrainSimulation.Parcelles[indexParcelle].Plantes[indexPlante].ValeurProduit * TerrainSimulation.Parcelles[indexParcelle].Plantes[indexPlante].ValeurProduit; //Ajouter de l'argent au joueur quand la plante est mure.
                         }
+                        if (plante.NiveauMaturation >= 1 || plante.VerificationEtatPlante(moisPourMeteo) <= -0.8) //Si l'état est suffisament mauvais la plante perd en maturité 
+                            {
+                                plante.NiveauMaturation--;
+                                TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = plante.ImagesPlante![plante.NiveauMaturation];
+                            }
                     }
                     indexPlante++;
                 }
@@ -135,38 +152,35 @@ public class Simulation
             //-----MODE CLASSIQUE------
             else
             {
-                /*
+                //Variable aléatoire du choix de l'animal
                 int animal = rng.Next(0, 4);
+                //Variable aléatoire du choix de la parcelle
+                int numParcelle = rng.Next(0, 6);
                 //Sanglier
                 if (animal == 0)
                 {
-                    Sanglier sanglier = new Sanglier();
-                    if (TerrainSimulation.TerrainProtege == false) sanglier.Action();
-                    //Console.WriteLine(TerrainSimulation)
+                    Sanglier sanglier = new Sanglier(numParcelle, TerrainSimulation);
+                    if (TerrainSimulation.TerrainProtege == false) sanglier.Action(numParcelle);
                 }
                 //Escargot
                 else if (animal == 1)
                 {
-                    Escargot escargot = new Escargot();
-                    escargot.Action();
-                    //Console.WriteLine(TerrainSimulation)
+                    Escargot escargot = new Escargot(numParcelle, TerrainSimulation);
+                    escargot.Action(numParcelle);
                 }
                 //Abeille
                 else if (animal == 2)
                 {
-                    Abeille abeille = new Abeille();
-                    abeille.Action();
-                    //Console.WriteLine(TerrainSimulation)
+                    Abeille abeille = new Abeille(numParcelle, TerrainSimulation);
+                    abeille.Action(numParcelle);
                 }
                 //Ver de terre
                 else if (animal == 3)
                 {
-                    VerDeTerre ver = new VerDeTerre();
-                    ver.Action();
-                    //Console.WriteLine(TerrainSimulation)
+                    VerDeTerre ver = new VerDeTerre(numParcelle, TerrainSimulation);
+                    ver.Action(numParcelle);
                 }
-                
-                */
+                Console.WriteLine(TerrainSimulation);
                 //ACTIONS DU JOUEUR
                 Console.Clear();
                 TerrainSimulation.ToClassiqueString();

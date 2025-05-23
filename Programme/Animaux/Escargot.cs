@@ -3,12 +3,12 @@ public class Escargot : Animaux
 {
     private bool parcelleTropSec = false;
 
-    public Escargot (int parcelleDepart, int emplacementDepart, Terrain terrainAnimal) : base (parcelleDepart,emplacementDepart, terrainAnimal)
+    public Escargot (int parcelleDepart, Terrain terrainAnimal) : base (parcelleDepart, terrainAnimal)
     {
         NomAnimal="Escargot";
     }
 
-    public override void Action(int parcelleDepart, int emplacementDepart) //les escargots mangent tout les fruits d'une parcelle 
+    public override void Action(int parcelleDepart) //les escargots mangent tout les fruits d'une parcelle 
     {
         if(TerrainAnimal.Parcelles[parcelleDepart].HumiditeParcelle>0.3) //on peut modifier la valeur mais c'est pour indiquer qu'il n'aiment pas quand c'est sec
         {

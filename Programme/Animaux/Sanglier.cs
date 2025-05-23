@@ -1,11 +1,11 @@
 public class Sanglier : Animaux
 {
-    public Sanglier(int parcelleDepart, int emplacementDepart, Terrain terrainAnimal) : base(parcelleDepart, emplacementDepart, terrainAnimal)
+    public Sanglier(int parcelleDepart, Terrain terrainAnimal) : base(parcelleDepart, terrainAnimal)
     {
         NomAnimal = "Sanglier";
     }
 
-    public override void Action(int parcelleDepart, int emplacementDepart) //le sanglier piétine les plantes 
+    public override void Action(int parcelleDepart) //le sanglier piétine les plantes 
     {
         //possible de faire que les nénuphare et les cactus le bloque
         for (int i = 0; i < 12; i++)

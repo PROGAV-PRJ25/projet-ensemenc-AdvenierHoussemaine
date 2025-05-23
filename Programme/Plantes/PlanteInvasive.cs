@@ -2,7 +2,7 @@ public class PlanteInvasive : Plante
 {
     public PlanteInvasive(Parcelle parcellePlante) : base(parcellePlante)
     {
-        ImagesPlante = new List<string> { "🌱 " };
+        ImagesPlante = new List<string> { " 🌱 " };
         NomPlante = "Weed";
         NombreProduits = 0;
         //SaisonSemis = tt l'année
@@ -20,7 +20,7 @@ public class PlanteInvasive : Plante
         int index = 0; //On veut récupérer l'indice des itérations emplacement.
         foreach (var emplacement in ParcellePlante!.Emplacements)
         {
-            if (emplacement == "🟤 ")
+            if (emplacement == " 🟤 ")
             {
                 ParcellePlante.Emplacements[index] = ImagesPlante![0];
                 index++;

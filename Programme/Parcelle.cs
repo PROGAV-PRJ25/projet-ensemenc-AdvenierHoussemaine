@@ -16,8 +16,7 @@ public class Parcelle
     Emplacements = new string[12];
     Emplacements = emplacements;
     NumParcelle = numPetitTerrain;
-    //PlanteNull = new PlanteNull(Parcele);
-    Plantes = new List<Plante>(new PlanteNull[12]); //CHANGER ICI, CA INITIALISE PAS CORRECTEMENT! //On initialise avec 12 plantes null.
+    Plantes = new List<Plante> { }; //Les plantes seront ajoutée au début de la simulation.
   }
 
   public void Planter(Parcelle parcelle, int positionParcelle)
