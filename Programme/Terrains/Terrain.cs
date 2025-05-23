@@ -28,6 +28,7 @@ public abstract class Terrain
             parcelle.Plantes.Add(Plantenull); //AJoute que des plantes nulles à l'initalisation.
             parcelle.HumiditeParcelle = HumiditeTerrain;
             parcelle.EnsoleillementParcelle = EnsoleillementTerrain;
+            parcelle.AbsorbtionDeLeau = AbsorbtionDeLeau;
             Parcelles.Add(parcelle);
         }
     }
