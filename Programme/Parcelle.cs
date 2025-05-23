@@ -106,14 +106,14 @@ public class Parcelle
       }while(robustessePlanter == false);
         
     }
-    public void InfiltrationDeLaPluie(Mois moisActuel)
-    {//la pluviometrie est environ entre 5 et 10 cm par mois
-      HumiditeParcelle += moisActuel.Pluviometrie* AbsorbtionDeLeau/10;
-      if (HumiditeParcelle>1)
-      {
-        HumiditeParcelle=1;
-      }
+  public void InfiltrationDeLaPluie(Mois moisActuel)
+  {//la pluviometrie est environ entre 5 et 10 cm par mois
+    HumiditeParcelle += moisActuel.Pluviometrie * AbsorbtionDeLeau / 10;
+    if (HumiditeParcelle > 1)
+    {
+      HumiditeParcelle = 1;
     }
+  }
     public void InfluenceSolei(Mois moisActuel)
     {
       // on initialise l'ensoleillement de la parcelle 

@@ -2,7 +2,7 @@ using System.Net.Cache;
 
 public class Simulation 
 {
-    static private Random rng = new Random(); //est utilisé pour l'aléatoire
+    private Random rng = new Random(); //est utilisé pour l'aléatoire
     protected Annee AnneeSimulation;
     public bool ConditionArret = false;
     public int ArgentJoueur {get; set;}
@@ -105,6 +105,13 @@ public class Simulation
             }
             //AFFICHAGE DU MOIS ET DE LA METEO
             Console.WriteLine(AnneeSimulation);
+            //INFLUENCE DE LA METEO SUR LES PARCELLES
+            foreach (var parcelle in TerrainSimulation.Parcelles)
+            {
+                parcelle.InfiltrationDeLaPluie(moisPourMeteo);
+                parcelle.InfluenceSolei(moisPourMeteo);
+            }
+            
 
             //DETERMINATION DU MODE URGENCE OU NON
             int risqueModeUrgence = rng.Next(1, 8); //Une chance sur 4 d'être en mode urgence. Il y a deux modes urgence.
