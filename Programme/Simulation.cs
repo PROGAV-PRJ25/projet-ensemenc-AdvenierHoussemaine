@@ -32,7 +32,7 @@ public class Simulation
         }
         PlanteNull = new PlanteNull(TerrainSimulation.Parcelles[0]); //On initialise une plante null générique sur une parcelle aléatoire.
     }
-    public bool CalculerconditionArret()
+    private bool CalculerconditionArret()
     {
         //On veut voir si 3/4 ou plus des 3/4 des plantes sont à une vitesse de croissance de -0,5 ou plus ou si la moitié des plantes sont mortes(CONDITION : si on a 10 plantes ou plus).
         int nombreDePlantes = EnsemblePlantes!.Sum(liste => liste.Count);

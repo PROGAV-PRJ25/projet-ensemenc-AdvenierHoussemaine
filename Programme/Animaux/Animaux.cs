@@ -1,10 +1,10 @@
 using System.Runtime.Serialization;
 public abstract class Animaux
 {
-    public int ParcellePositionAnimal { get; set; }
-    public string? NomAnimal {get; set;} = "";
+    protected int ParcellePositionAnimal { get; set; }
+    protected string? NomAnimal {get; set;} = "";
 
-    public Terrain TerrainAnimal {get; set;}
+    protected Terrain TerrainAnimal {get; set;}
     public Animaux(int parcelleDepart, Terrain terrainAnimal)
     {
         ParcellePositionAnimal = parcelleDepart;
