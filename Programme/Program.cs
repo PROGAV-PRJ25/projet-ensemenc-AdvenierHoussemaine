@@ -15,6 +15,9 @@ Pour bien jouer au jeu il faut savoir :
 - Les plantes sont très sensible à la lumionisté et l'humidité ! pensez bien à arroser ou ombrager vos plantes à chaque tour (si nécessaire).
 - Vous pouvez arrêter de jouer à n'importe quel tour.
 - La partie s'arrete lorsque la moitié de vos plantes sont mortes, lorsque la majorité sont en mauvais état ou lorsque vous avec -5 🔔.
+- 🌱 sont des mauvaises herbes. Si elles sont su rune emplacement, nous ne pourrez pas planter une plante avant de l'avoir déserbée.
+    Les mauvaises herbes envahissent le terrain tous les 5 tours.
+- 🍂 représente une plante morte. De la même façon, pour planter une plante il faut la déserherber.
 
 Bon courage...!");
 bool robustesse = false;
