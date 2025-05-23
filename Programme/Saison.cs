@@ -1,11 +1,11 @@
 public class Saison {
     public string NomSaison {get; set;}
-    public List<Mois> MoisDeLaSaison {get; set;}
+    public List<Mois> MoisDeLaSaison {get; set;} //nous l'instanceron seulement avec des noms de saison valide
 
     public Saison(string nomSaison)
     {
-        NomSaison=nomSaison;
-        if (nomSaison=="Été")
+        NomSaison = nomSaison;
+        if (nomSaison == "Été")
         {
             MoisDeLaSaison = new List<Mois>
             {
@@ -15,7 +15,7 @@ public class Saison {
             };
 
         }
-        if (nomSaison=="Automne")
+        if (nomSaison == "Automne")
         {
             MoisDeLaSaison = new List<Mois>
             {
@@ -25,7 +25,7 @@ public class Saison {
             };
 
         }
-        if (nomSaison=="Hiver")
+        if (nomSaison == "Hiver")
         {
             MoisDeLaSaison = new List<Mois>
             {
@@ -34,7 +34,7 @@ public class Saison {
                 new("Février")
             };
         }
-        else
+        else if (nomSaison == "Printemps")
         {
             MoisDeLaSaison = new List<Mois>
             {
@@ -43,5 +43,10 @@ public class Saison {
                 new("Mai")
             };
         }
+        else
+        {
+            //cas théorique mais n'est jamais realise
+            MoisDeLaSaison = new List<Mois> { };
+         }
     }
 }
