@@ -60,8 +60,9 @@ public class Simulation
             if (robustesse == true && input == "n") //Va modifier la valeur de la condition d'arrêt à true si le joueur ne veut plus jouer. 
             {
                 ConditionArret = true;
+                robustesse = true;
             }
-            else robustesse = false;
+            else robustesse = true;
         }while(robustesse == false);
         return ConditionArret;
     }
@@ -97,11 +98,15 @@ public class Simulation
                 int indexPlante = 0;
                 foreach (var plante in parcelle.Plantes)
                 {
-                    //Par défaut, les plante s'agrandissent à chaque tour.
-                    plante.NiveauMaturation++;
-                    TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = plante.ImagesPlante![plante.NiveauMaturation];
-                    if (!(plante is PlanteNull) && !(plante is PlanteInvasive))
+                    if (!(plante is PlanteNull) && !(plante is PlanteInvasive) && plante.NiveauMaturation >= 0)
                     {
+                        //Par défaut, les plante s'agrandissent à chaque tour.
+                        if (plante.NiveauMaturation <= 3)
+                        {
+                            plante.NiveauMaturation+=1;
+                            TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = plante.ImagesPlante![plante.NiveauMaturation];
+                        }
+
                         if (plante.VerificationEtatPlante(moisPourMeteo) == -1) //si la plante n'a pas surveccu on le signale
                         {
                             plante.NiveauMaturation = 0;
@@ -114,14 +119,12 @@ public class Simulation
                             TerrainSimulation.Parcelles[indexParcelle].Plantes[indexPlante] = PlanteNull;
                             ArgentJoueur += TerrainSimulation.Parcelles[indexParcelle].Plantes[indexPlante].ValeurProduit * TerrainSimulation.Parcelles[indexParcelle].Plantes[indexPlante].ValeurProduit; //Ajouter de l'argent au joueur quand la plante est mure.
                         }
-                        if (plante.NiveauMaturation >= 1 && plante.VerificationEtatPlante(moisPourMeteo) < -0.8) //Si l'état est suffisament mauvais la plante perd en maturité 
+                        else if (plante.NiveauMaturation >= 1 && plante.VerificationEtatPlante(moisPourMeteo) < -0.8) //Si l'état est suffisament mauvais la plante perd en maturité 
                         {
                             plante.NiveauMaturation--;
                             TerrainSimulation.Parcelles[indexParcelle].Emplacements[indexPlante] = plante.ImagesPlante![plante.NiveauMaturation];
                         }
-                        Console.WriteLine($"{plante.NiveauMaturation}");
-                        System.Threading.Thread.Sleep(2000);
-
+                        
                     }
                     indexPlante++;
                 }
