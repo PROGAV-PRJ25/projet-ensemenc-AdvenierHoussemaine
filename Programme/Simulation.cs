@@ -60,6 +60,7 @@ public class Simulation
             if (robustesse == true && input == "n") //Va modifier la valeur de la condition d'arrêt à true si le joueur ne veut plus jouer. 
             {
                 conditionArret = true;
+                robustesse = true;
             }
             else robustesse = false;
         } while (robustesse == false);
