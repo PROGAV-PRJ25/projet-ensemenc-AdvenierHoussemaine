@@ -110,6 +110,7 @@ public class Simulation
             {
                 parcelle.InfiltrationDeLaPluie(moisPourMeteo);
                 parcelle.InfluenceSolei(moisPourMeteo);
+                parcelle.ToString();
             }
             
 
